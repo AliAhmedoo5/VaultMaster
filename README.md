@@ -1,0 +1,156 @@
+# 🛡️ VaultMaster (Nexus Archive)
+
+[![Flutter](https://img.shields.io/badge/Flutter-v3.22+-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
+[![Riverpod](https://img.shields.io/badge/Riverpod-v2.5+-00c8ff?logo=dart&logoColor=white)](https://riverpod.dev)
+[![Firebase](https://img.shields.io/badge/Firebase-Auth%20%7C%20Firestore%20%7C%20Storage-FFCA28?logo=firebase&logoColor=white)](https://firebase.google.com)
+[![Cloudinary](https://img.shields.io/badge/Cloudinary-Ingestion-3448C5?logo=cloudinary&logoColor=white)](https://cloudinary.com)
+[![Platform](https://img.shields.io/badge/Platforms-iOS%20%7C%20Android-green.svg)](#)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](#)
+
+> **VaultMaster** is a secure, offline-first "pocket filing cabinet" mobile application. Designed for professionals, freelancers, and students, it allows users to smartly scan physical documents, import digital files, organize them into customizable folders, protect sensitive assets behind device-level biometrics, and seamlessly synchronize them to the cloud.
+
+---
+
+## ✨ Core Features
+
+* **📸 Smart Document Scanner**
+  Powered by **Google ML Kit Document Scanner** for real-time edge detection, perspective correction, tilt adjustment, and multi-page PDF compilation.
+* **📂 Smart Categorization & Ingestion**
+  Import files (`PDF`, `DOCX`, `XLSX`, `TXT`, `PNG`, `JPG`) from local device directories and automatically categorize them with dynamic tags and visual cues.
+* **🔒 Biometric Security Vault**
+  An encrypted, high-security space locked behind native device biometrics (**FaceID/Fingerprint**) or security **PIN** using OS keychain access.
+* **⚡ Robust Offline-First Engine**
+  Fully operational without internet access. Metadata and files are stored securely on-device with background synchronization that uploads assets to Cloudinary and registers them to Cloud Firestore once connectivity is restored.
+* **📤 Native Share Integration**
+  Instantly share documents via email, WhatsApp, Slack, or Google Drive via direct integration with native iOS & Android Share Sheets.
+
+---
+
+## 🎨 Modern Utility Design System
+
+VaultMaster follows a sleek, **Minimalist Modern Corporate** visual language optimized for productivity, high readability, and reduced cognitive load.
+
+### 🎨 Harmonious Color Tokens
+* **Primary (Navy):** `#1A237E` — Establishes authority, premium safety, and corporate reliability.
+* **Secondary (Slate):** `#455A64` — Used for neutral elements, utility texts, and metadata.
+* **Background:** Soft Gray (`#F8F9FA`) — Prevents eye strain during prolonged use.
+
+### 🏷️ Semantic Color Coding for Rapid Scanning
+Documents are color-coded dynamically based on file format to facilitate rapid visual triage:
+* <span style="color:#d32f2f">■</span> **Red:** PDF Documents
+* <span style="color:#1976d2">■</span> **Blue:** Word Processing / Text Files (`.docx`, `.txt`)
+* <span style="color:#388e3c">■</span> **Green:** Spreadsheets / Data (`.xlsx`, `.csv`)
+* <span style="color:#f57c00">■</span> **Orange:** Rich Media / Images (`.jpg`, `.png`)
+* <span style="color:#ffa000">■</span> **Amber:** System Categories & Folders
+
+### 📐 Layout Rhythm & Typography
+* **Typography:** **Inter** is used exclusively, with heavy display weights for headings and medium uppercase formats for data badges.
+* **The 8px Grid:** Precise structural increments (4px, 8px, 16px, 24px) are enforced across all elements to align with strict responsive structures.
+* **Tonal Layering:** Modals and containers rely on light borders (`1px #E0E4E8`) and soft shadows rather than flat elevations.
+
+---
+
+## 🏗️ Technical Architecture
+
+VaultMaster is built with clean architecture principles in Flutter, dividing business layers, UI presentation, and remote integration cleanly.
+
+```mermaid
+graph TD
+    UI[Flutter Widgets] -->|Watch / Read| Controller[Riverpod Providers]
+    Controller -->|Interact| Repo[DocumentRepository]
+    Repo -->|Local Ingestion| LocalStorage[PathProvider - secure local storage]
+    Repo -->|Offline Cache| LocalDB[Firestore Local Offline Cache]
+    Repo -->|Background Sync| Sync[Cloudinary Ingestion Engine]
+    Sync -->|Remote Storage| CloudStorage[Cloudinary Cloud Assets]
+    Sync -->|Metadata Registration| RemoteFirestore[Cloud Firestore Server]
+```
+
+### 🗃️ Firebase Firestore Schema
+
+#### `users` Collection
+Stores user account profiles and analytical information:
+```json
+{
+  "uid": "String (Document ID)",
+  "email": "String",
+  "createdAt": "Timestamp",
+  "storageUsed": "Number (in bytes)"
+}
+```
+
+#### `categories` Collection
+Folders representing discrete document compartments:
+```json
+{
+  "id": "String (Document ID)",
+  "userId": "String (Index)",
+  "name": "String (e.g., 'Taxes')",
+  "icon": "String (Icon Identifier)",
+  "isVault": "Boolean (Requires Biometrics)",
+  "createdAt": "Timestamp"
+}
+```
+
+#### `documents` Collection
+Atomic metadata detailing local and cloud files:
+```json
+{
+  "id": "String (Document ID)",
+  "userId": "String (Index)",
+  "categoryId": "String (Foreign Key)",
+  "name": "String",
+  "fileType": "String (pdf | png | docx)",
+  "fileSize": "Number (bytes)",
+  "cloudUrl": "String (Nullable, populated upon upload)",
+  "localPath": "String (On-device path)",
+  "fileHash": "String (SHA-256 byte-level hash)",
+  "createdAt": "Timestamp"
+}
+```
+
+---
+
+## 🛠️ Developer Setup & Local Execution
+
+Follow these instructions to clone, build, and deploy the application locally.
+
+### 📋 Prerequisites
+* Flutter SDK (v3.22.0 or higher)
+* Dart SDK (v3.4.0 or higher)
+* Android Studio / Xcode for device compilation
+
+### 🚀 Running the App
+
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd vaultmaster
+   ```
+
+2. **Fetch dependencies:**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Rebuild local database abstractions (Riverpod & Freezed code generation):**
+   ```bash
+   dart run build_runner build --delete-conflicting-outputs
+   ```
+
+4. **Restore Configuration Files (Excluded from Version Control):**
+   VaultMaster's production Firebase credentials and services are excluded from Git to prevent leakage. You must provide your own Firebase configuration:
+   
+   * **Firebase Options:** Create `lib/firebase_options.dart` containing your standard `DefaultFirebaseOptions`.
+   * **iOS Config:** Put your `GoogleService-Info.plist` inside `ios/Runner/`.
+   * **Android Config:** Put your `google-services.json` inside `android/app/`.
+
+5. **Execute on your target platform:**
+   ```bash
+   flutter run
+   ```
+
+---
+
+## 🛡️ License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

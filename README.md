@@ -65,6 +65,16 @@ graph TD
     Sync -->|Metadata Registration| RemoteFirestore[Cloud Firestore Server]
 ```
 
+The system follows a highly decoupled **Clean Architecture** model structured around four key layers:
+
+1. **🎨 Presentation Layer (UI & Widgets)**: Pure UI elements built in Flutter. These are completely reactive and do not store or process data directly. They utilize standard components defined in the design guidelines.
+2. **⚡ Application State Layer (Riverpod Controllers)**: Manages UI states, loading status, biometric intercept workflows, and authentication flows asynchronously. By housing all logical operations, it ensures views remain completely stateless.
+3. **📦 Domain & Data Layer (Repositories & Models)**: Intermediary data controllers, chiefly handled by `DocumentRepository`. Responsible for byte-level cryptographic hashing (`SHA-256`) to automatically prevent duplicate files, locally caching file metadata, and controlling vault operations.
+4. **☁️ Synchronization & Storage Engine (Local & Cloud)**: 
+   - **Local File System**: Fast, secure local storage via `PathProvider`.
+   - **Offline Database Cache**: Firestore Local Cache guarantees instant database indexing offline.
+   - **Cloud Sync Engine**: A background service that checks network availability, uploads physical assets to **Cloudinary** using secure, lightweight multipart transfers, and instantly updates central records in **Cloud Firestore** when online.
+
 ### 🗃️ Firebase Firestore Schema
 
 #### `users` Collection

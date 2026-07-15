@@ -7,6 +7,11 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Release Tag Name (optional, e.g. v1.0.1 - defaults to auto version)'
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -92,11 +97,12 @@ jobs:
           path: build/app/outputs/flutter-apk/app-release.apk
 
       - name: Create Release
-        if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ inputs.tag_name != '' && inputs.tag_name || (startsWith(github.ref, 'refs/tags/v') && github.ref_name || format('v1.0.{0}', github.run_number)) }}
+          name: ${{ inputs.tag_name != '' && inputs.tag_name || (startsWith(github.ref, 'refs/tags/v') && format('Release {0}', github.ref_name) || format('Release v1.0.{0}', github.run_number)) }}
           files: build/app/outputs/flutter-apk/app-release.apk
-          name: Release ${{ github.ref_name }}
+          generate_release_notes: true
           draft: false
           prerelease: false
         env:

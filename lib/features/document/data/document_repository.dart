@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:uuid/uuid.dart';
 import 'package:path/path.dart' as p;
 import 'package:crypto/crypto.dart';
 import '../domain/document_model.dart';
@@ -23,7 +22,6 @@ class DuplicateDocumentException implements Exception {
 class DocumentRepository {
   final FirebaseFirestore _firestore;
   final String _userId;
-  final Uuid _uuid = const Uuid();
 
   // Injected real credentials
   static const String _cloudinaryCloudName = 'dghqjhbxj';
@@ -69,13 +67,16 @@ class DocumentRepository {
       // or we could fallback to server check. For now, proceeding is safe.
     }
 
+    // Generate unique local filename using Firestore document ID
+    final docRef = _userDocumentsRef.doc();
+
     // 2. Copy file to secure local directory
     final appDocsDir = await _getAppDocumentsDir();
     final fileExtension = p.extension(file.path);
     final fileType = fileExtension.replaceAll('.', '').toLowerCase();
     
     // Generate unique local filename
-    final localFilename = '${_uuid.v4()}$fileExtension';
+    final localFilename = '${docRef.id}$fileExtension';
     final secureLocalPath = p.join(appDocsDir, localFilename);
     
     // Copy the physical file
@@ -85,7 +86,6 @@ class DocumentRepository {
     final fileSize = await File(secureLocalPath).length();
 
     // 2. Save metadata to Firestore (Offline-first enabled by default)
-    final docRef = _userDocumentsRef.doc();
     final document = DocumentModel(
       id: docRef.id,
       userId: _userId,

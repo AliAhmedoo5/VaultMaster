@@ -43,7 +43,6 @@ dependencies:
   http: ^1.2.1
   connectivity_plus: ^6.0.3
   cunning_document_scanner: ^1.2.0
-  uuid: ^4.3.3
   file_picker: ^8.0.0
   share_plus: ^10.0.0
   path_provider: ^2.1.2

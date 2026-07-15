@@ -84,16 +84,13 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
               ),
             );
           }
-          return RefreshIndicator(
-            onRefresh: () async {},
-            child: ListView.builder(
-              padding: const EdgeInsets.all(AppTheme.spacingMd),
-              itemCount: documents.length,
-              itemBuilder: (context, index) {
-                final doc = documents[index];
-                return _VaultDocumentCard(document: doc);
-              },
-            ),
+          return ListView.builder(
+            padding: const EdgeInsets.all(AppTheme.spacingMd),
+            itemCount: documents.length,
+            itemBuilder: (context, index) {
+              final doc = documents[index];
+              return _VaultDocumentCard(document: doc);
+            },
           );
         },
         loading: () => const Center(child: CircularProgressIndicator(color: Colors.redAccent)),

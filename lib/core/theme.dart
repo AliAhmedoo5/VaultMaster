@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'constants.dart';
 
 class AppTheme {
   // Brand Color Palette from DESIGN.md
@@ -31,13 +32,13 @@ class AppTheme {
   static const double radiusLg = 8.0;   // Cards, preview cards, modals
   static const double radiusFull = 9999.0; // Floating, avatars
 
-  // Spacings
-  static const double spacingBase = 4.0;
-  static const double spacingXs = 4.0;
-  static const double spacingSm = 8.0;
-  static const double spacingMd = 16.0;
-  static const double spacingLg = 24.0;
-  static const double spacingXl = 40.0;
+  // Spacings referencing AppConstants standard tokens
+  static const double spacingBase = AppConstants.base;
+  static const double spacingXs = AppConstants.xs;
+  static const double spacingSm = AppConstants.sm;
+  static const double spacingMd = AppConstants.md;
+  static const double spacingLg = AppConstants.lg;
+  static const double spacingXl = AppConstants.xl;
 
   static ThemeData get lightTheme {
     // Core color scheme configuration matching Design Tokens

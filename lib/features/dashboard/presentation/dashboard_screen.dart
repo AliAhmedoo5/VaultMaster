@@ -119,16 +119,13 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                     ),
                   );
                 }
-                return RefreshIndicator(
-                  onRefresh: () async {},
-                  child: ListView.builder(
-                    padding: const EdgeInsets.all(AppTheme.spacingMd),
-                    itemCount: filteredDocs.length,
-                    itemBuilder: (context, index) {
-                      final doc = filteredDocs[index];
-                      return _DocumentCard(document: doc);
-                    },
-                  ),
+                return ListView.builder(
+                  padding: const EdgeInsets.all(AppTheme.spacingMd),
+                  itemCount: filteredDocs.length,
+                  itemBuilder: (context, index) {
+                    final doc = filteredDocs[index];
+                    return _DocumentCard(document: doc);
+                  },
                 );
               },
               loading: () => const Center(child: CircularProgressIndicator(color: AppTheme.primary)),

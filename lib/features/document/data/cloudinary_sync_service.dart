@@ -50,6 +50,7 @@ class CloudinarySyncService extends _$CloudinarySyncService with WidgetsBindingO
     
     try {
       final repo = ref.read(documentRepositoryProvider);
+      if (repo.currentUser == null) return;
       var unsyncedDocs = await repo.getUnsyncedDocuments();
 
       while (unsyncedDocs.isNotEmpty && _isAppInForeground) {

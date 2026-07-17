@@ -1207,3 +1207,198 @@ section {
 }
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ==========================================================================
+   AUTHENTIC IN-APP MODALS, KEYPADS & OVERLAYS (No Browser Prompts!)
+   ========================================================================== */
+
+.flutter-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.flutter-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Material 3 Bottom Sheet */
+.flutter-bottomsheet {
+    background: var(--flutter-surface);
+    border-radius: 20px 20px 0 0;
+    width: 100%;
+    padding: 16px 16px 28px;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.4);
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    color: var(--flutter-on-surface);
+}
+.flutter-overlay.show .flutter-bottomsheet {
+    transform: translateY(0);
+}
+.bottomsheet-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    color: var(--flutter-on-surface);
+    font-weight: 600;
+    font-size: 15px;
+    transition: background 0.15s ease;
+}
+.bottomsheet-item:hover {
+    background: rgba(26, 35, 126, 0.08);
+}
+
+/* Material 3 Dialog */
+.flutter-dialog {
+    background: var(--flutter-surface);
+    border-radius: 24px;
+    width: 88%;
+    max-width: 320px;
+    padding: 22px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    margin: auto;
+    color: var(--flutter-on-surface);
+}
+.flutter-overlay.show .flutter-dialog {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Security Vault PIN Pad Screen (`VaultPinScreen.dart`) */
+.flutter-pin-modal {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #0A0A0C;
+    z-index: 105;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    color: #FFFFFF;
+}
+.flutter-pin-modal.show {
+    transform: translateY(0);
+}
+.pin-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.38);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pin-dot.filled {
+    background: #00E5FF;
+    border-color: #00E5FF;
+    box-shadow: 0 0 12px #00E5FF;
+}
+.pin-keypad {
+    background: #141418;
+    border-radius: 32px 32px 0 0;
+    padding: 24px 20px 20px;
+}
+.pin-row {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 16px;
+}
+.pin-key {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #FFFFFF;
+    font-size: 26px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    user-select: none;
+}
+.pin-key:hover {
+    background: rgba(0, 229, 255, 0.15);
+    border-color: #00E5FF;
+    transform: scale(1.05);
+}
+
+/* Security Vault View (`VaultScreen.dart`) */
+.flutter-screen-vault {
+    background: #1A0A0A;
+    color: #FFFFFF;
+}
+.vault-card {
+    background: #261212;
+    border: 1px solid rgba(255, 82, 82, 0.35);
+    border-radius: var(--flutter-radius-lg);
+    padding: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.vault-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 82, 82, 0.15);
+}
+
+/* Camera Scanner Viewfinder (`DocumentScanner`) */
+.flutter-camera-modal {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #050508;
+    z-index: 110;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.flutter-camera-modal.show {
+    transform: translateY(0);
+}
+.camera-viewfinder {
+    flex: 1;
+    margin: 16px 20px;
+    border: 2px dashed #00E5FF;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(0,229,255,0.08) 0%, rgba(0,0,0,0.7) 100%);
+    box-shadow: 0 0 30px rgba(0,229,255,0.15) inset;
+}
+.camera-laser {
+    position: absolute;
+    left: 0; right: 0;
+    height: 3px;
+    background: #00E5FF;
+    box-shadow: 0 0 16px #00E5FF;
+    animation: scanLaser 1.5s infinite ease-in-out;
+}
+@keyframes scanLaser {
+    0% { top: 8%; opacity: 0.8; }
+    50% { top: 92%; opacity: 1; }
+    100% { top: 8%; opacity: 0.8; }
+}
+

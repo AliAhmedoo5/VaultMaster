@@ -43,8 +43,8 @@
         
         <!-- Mode Switch Tabs -->
         <div class="demo-tabs">
-          <button class="demo-tab-btn" id="tab-flutter" onclick="switchDemoMode('flutter')">⚡ Flutter Web Canvas (CI/CD)</button>
-          <button class="demo-tab-btn active" id="tab-sandbox" onclick="switchDemoMode('sandbox')">🎨 Interactive Sandbox</button>
+          <button class="demo-tab-btn active" id="tab-flutter" onclick="switchDemoMode('flutter')">🚀 Live App Sandbox (Flutter UI/UX)</button>
+          <button class="demo-tab-btn" id="tab-sandbox" onclick="switchDemoMode('sandbox')">⚡ Quick HTML Overview</button>
         </div>
 
         <!-- Smartphone Mockup Wrapper -->
@@ -52,25 +52,25 @@
           <div class="phone-frame">
             <div class="phone-notch"></div>
             
-            <!-- Flutter Web App Iframe -->
-            <iframe src="app/index.html" id="flutter-iframe" title="VaultMaster Flutter Web App" class="app-iframe" style="display: none;" allow="camera; clipboard-read; clipboard-write; fullscreen"></iframe>
+            <!-- Flutter Web App Iframe (Primary Interactive Sandbox with mock Google Login) -->
+            <iframe src="app/index.html" id="flutter-iframe" title="VaultMaster Flutter Web App" class="app-iframe" style="display: block;" allow="camera; clipboard-read; clipboard-write; fullscreen"></iframe>
 
-            <!-- Flutter Fallback Card (When CI build is not yet deployed) -->
+            <!-- Flutter Fallback Card (If CI build is still compiling) -->
             <div id="flutter-fallback" style="display: none; padding: 48px 20px 20px; height: 100%; overflow-y: auto; background: var(--bg-primary); text-align: center;">
               <div style="margin-top: 2rem;">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
-                <h3 style="margin-bottom: 0.5rem; color: var(--text-main);">Flutter Web Canvas</h3>
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
+                <h3 style="margin-bottom: 0.5rem; color: var(--text-main);">Building App Sandbox...</h3>
                 <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 1.5rem; max-width: 260px; margin-left: auto; margin-right: auto;">
-                  The full WebAssembly app bundle is compiled and published via GitHub Actions cloud CI/CD. To test our offline-first document organizer immediately, switch to the <b>Interactive Sandbox</b> below!
+                  GitHub Actions is compiling the live WebAssembly app bundle right now. Or switch to the Quick HTML Overview below while it deploys!
                 </p>
                 <button class="btn btn-gold" onclick="switchDemoMode('sandbox')" style="padding: 10px 20px; font-size: 0.85rem; width: auto; margin: 0 auto;">
-                  🎨 Launch Interactive Sandbox →
+                  ⚡ View Quick HTML Overview →
                 </button>
               </div>
             </div>
 
-            <!-- Sandbox Simulation (Default active view) -->
-            <div id="sandbox-view" style="padding: 48px 20px 20px; height: 100%; overflow-y: auto; background: var(--bg-primary);">
+            <!-- HTML Simulation (Secondary view) -->
+            <div id="sandbox-view" style="padding: 48px 20px 20px; height: 100%; overflow-y: auto; background: var(--bg-primary); display: none;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
                 <div>
                   <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">WORKSPACE</div>
@@ -199,6 +199,11 @@
         sandboxView.style.display = 'block';
       }
     }
+
+    // Auto-check and initialize Flutter sandbox view right away on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      switchDemoMode('flutter');
+    });
 
     let scanCounter = 1;
     function simulateScan() {

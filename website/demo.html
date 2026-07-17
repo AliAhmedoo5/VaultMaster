@@ -78,8 +78,21 @@
                 <span id="flutter-snackbar-msg">OK you are sign in</span>
               </div>
 
+              <!-- SCREEN 0: EXACT FLUTTER SPLASH SCREEN (`SplashScreen.dart`) -->
+              <div id="flutter-screen-splash" class="flutter-screen active flutter-screen-splash">
+                <div class="splash-content" id="splash-content-box">
+                  <div class="splash-logo-box">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1A237E 0%, #0D47A1 100%); display: flex; align-items: center; justify-content: center; position: relative;">
+                      <span style="font-size: 52px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));">🛡️</span>
+                    </div>
+                  </div>
+                  <div class="splash-title">VaultMaster</div>
+                  <div class="splash-subtitle" id="splash-status-text">Encrypted Storage • ML Kit</div>
+                </div>
+              </div>
+
               <!-- SCREEN 1: EXACT FLUTTER LOGIN SCREEN (`LoginScreen.dart`) -->
-              <div id="flutter-screen-login" class="flutter-screen active" style="padding-bottom: 24px;">
+              <div id="flutter-screen-login" class="flutter-screen hidden" style="padding-bottom: 24px;">
                 
                 <!-- Transparent AppBar with Back Arrow -->
                 <div class="flutter-appbar transparent">
@@ -523,9 +536,48 @@
       }
     }
 
-    // Auto-check and initialize sandbox view on page load
+    function runSplashScreen(nextScreenId, duration = 2200, statusText = 'Encrypted Storage • ML Kit') {
+      const splashScreen = document.getElementById('flutter-screen-splash');
+      const contentBox = document.getElementById('splash-content-box');
+      const statusEl = document.getElementById('splash-status-text');
+      if (statusEl) statusEl.innerText = statusText;
+
+      // Hide all other screens first
+      document.querySelectorAll('#sandbox-view > .flutter-screen').forEach(scr => {
+        if (scr.id !== 'flutter-screen-splash') {
+          scr.classList.remove('active');
+          scr.classList.add('hidden');
+        }
+      });
+
+      splashScreen.classList.remove('hidden');
+      splashScreen.classList.add('active');
+
+      // Trigger scale & fade after a tiny frame delay
+      setTimeout(() => {
+        splashScreen.classList.add('animate');
+      }, 50);
+
+      // Transition to target screen
+      setTimeout(() => {
+        splashScreen.classList.remove('animate');
+        setTimeout(() => {
+          splashScreen.classList.remove('active');
+          splashScreen.classList.add('hidden');
+          
+          const target = document.getElementById(nextScreenId);
+          if (target) {
+            target.classList.remove('hidden');
+            target.classList.add('active');
+          }
+        }, 350);
+      }, duration);
+    }
+
+    // Auto-check and initialize sandbox view on page load with SplashScreen
     window.addEventListener('DOMContentLoaded', () => {
       switchDemoMode('sandbox');
+      runSplashScreen('flutter-screen-login', 2200, 'Encrypted Storage • ML Kit');
     });
 
     function showSnackbar(message) {
@@ -542,34 +594,17 @@
       if (text) text.innerText = 'AUTHENTICATING...';
       
       setTimeout(() => {
-        showSnackbar('OK you are sign in');
-        
-        const screenLogin = document.getElementById('flutter-screen-login');
-        const screenDash = document.getElementById('flutter-screen-dashboard');
-        
-        screenLogin.classList.remove('active');
-        screenLogin.classList.add('hidden');
-        
+        if (text) text.innerText = 'CONTINUE WITH GOOGLE';
+        runSplashScreen('flutter-screen-dashboard', 1800, 'Syncing Nexus Archive...');
         setTimeout(() => {
-          if (text) text.innerText = 'CONTINUE WITH GOOGLE';
-          screenDash.classList.remove('hidden');
-          screenDash.classList.add('active');
-        }, 150);
+          showSnackbar('OK you are sign in');
+        }, 1900);
       }, 500);
     }
 
     function logoutSandbox() {
       showSnackbar('Signed out of Nexus Archive.');
-      const screenLogin = document.getElementById('flutter-screen-login');
-      const screenDash = document.getElementById('flutter-screen-dashboard');
-      
-      screenDash.classList.remove('active');
-      screenDash.classList.add('hidden');
-      
-      setTimeout(() => {
-        screenLogin.classList.remove('hidden');
-        screenLogin.classList.add('active');
-      }, 150);
+      runSplashScreen('flutter-screen-login', 1600, 'Logging out...');
     }
 
     let currentCat = 'All';

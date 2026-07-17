@@ -91,7 +91,7 @@ jobs:
       - name: Build Flutter Web Bundle
         run: |
           echo "Building Flutter Web for embedded product demo..."
-          flutter build web --release --base-href "/app/" --web-renderer auto
+          flutter build web --release --base-href "/app/"
 
       - name: Assemble Website Package
         run: |

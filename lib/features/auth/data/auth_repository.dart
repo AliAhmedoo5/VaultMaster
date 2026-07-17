@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -34,14 +35,21 @@ class AuthRepository {
   }
 
   Future<UserCredential?> signInWithGoogle() async {
+    if (kIsWeb) {
+      final googleProvider = GoogleAuthProvider();
+      final userCred = await _auth.signInWithPopup(googleProvider);
+      if (userCred.user != null) {
+        await _syncUserProfile(userCred.user!);
+      }
+      return userCred;
+    }
+
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
     if (googleUser == null) return null; // User cancelled flow
 
     final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
-    final credential = OAuthCredential(
-      providerId: 'google.com',
-      signInMethod: 'google.com',
+    final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
@@ -54,13 +62,15 @@ class AuthRepository {
   }
 
   Future<void> signOut() async {
-    await _googleSignIn.signOut();
+    if (!kIsWeb) {
+      await _googleSignIn.signOut();
+    }
     await _auth.signOut();
   }
 
   Future<UserModel?> getUserProfile(String uid) async {
     final doc = await _db.collection('users').doc(uid).get();
-    if (!doc.exists) return null;
+    if (!doc.exists || doc.data() == null) return null;
     return UserModel.fromJson(doc.data()!, doc.id);
   }
 

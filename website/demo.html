@@ -43,8 +43,8 @@
         
         <!-- Mode Switch Tabs -->
         <div class="demo-tabs">
-          <button class="demo-tab-btn active" id="tab-flutter" onclick="switchDemoMode('flutter')">🚀 Live App Sandbox (Flutter UI/UX)</button>
-          <button class="demo-tab-btn" id="tab-sandbox" onclick="switchDemoMode('sandbox')">⚡ Quick HTML Overview</button>
+          <button class="demo-tab-btn active" id="tab-sandbox" onclick="switchDemoMode('sandbox')">🎨 Interactive Sandbox (HTML/JS)</button>
+          <button class="demo-tab-btn" id="tab-flutter" onclick="switchDemoMode('flutter')">⚡ Full Flutter Web Canvas (CI/CD)</button>
         </div>
 
         <!-- Smartphone Mockup Wrapper -->
@@ -69,67 +69,214 @@
               </div>
             </div>
 
-            <!-- HTML Simulation (Secondary view) -->
-            <div id="sandbox-view" style="padding: 48px 20px 20px; height: 100%; overflow-y: auto; background: var(--bg-primary); display: none;">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                <div>
-                  <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">WORKSPACE</div>
-                  <h3 style="margin-bottom: 0;">My Vault</h3>
-                </div>
-                <div style="background: var(--accent-navy); color: #FFF; padding: 4px 10px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 700;">🔒 Armed</div>
+            <!-- Interactive Sandbox Simulation (Default Active View - Pixel-to-Pixel Flutter Material 3 Clone) -->
+            <div id="sandbox-view" style="height: 100%; position: relative; overflow: hidden; background: var(--flutter-bg); display: block;">
+              
+              <!-- TOAST FLOATING SNACKBAR (`SnackBarBehavior.floating`) -->
+              <div id="flutter-snackbar" class="flutter-snackbar">
+                <span style="font-size: 1.1rem;">✅</span>
+                <span id="flutter-snackbar-msg">OK you are sign in</span>
               </div>
 
-              <!-- Quick Stats -->
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem;">
-                <div style="background: #FFF; padding: 12px; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
-                  <div style="font-size: 0.75rem; color: var(--text-muted);">DOCUMENTS</div>
-                  <div style="font-size: 1.25rem; font-weight: 800; color: var(--accent-navy);" id="sim-count">4 Files</div>
+              <!-- SCREEN 1: EXACT FLUTTER LOGIN SCREEN (`LoginScreen.dart`) -->
+              <div id="flutter-screen-login" class="flutter-screen active" style="padding-bottom: 24px;">
+                
+                <!-- Transparent AppBar with Back Arrow -->
+                <div class="flutter-appbar transparent">
+                  <button title="Back" style="background: transparent; border: none; cursor: pointer; color: var(--flutter-primary); padding: 8px; display: flex; align-items: center; justify-content: center;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                  </button>
+                  <div></div>
                 </div>
-                <div style="background: #FFF; padding: 12px; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
-                  <div style="font-size: 0.75rem; color: var(--text-muted);">ENCRYPTION</div>
-                  <div style="font-size: 1.25rem; font-weight: 800; color: var(--success);">AES-256</div>
+
+                <div style="padding: 12px 24px 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                  <!-- Welcome & Mode Header -->
+                  <div>
+                    <h1 style="font-size: 28px; font-weight: 700; color: var(--flutter-primary); margin: 0 0 4px 0; letter-spacing: -0.02em;">Welcome Back</h1>
+                    <p style="font-size: 14px; color: var(--flutter-on-surface-variant); margin: 0; line-height: 1.4;">Sign in to access your secure pocket cabinet.</p>
+                  </div>
+
+                  <!-- Form Fields -->
+                  <div style="margin-top: 24px;">
+                    <!-- EMAIL ADDRESS FIELD -->
+                    <div class="flutter-input-group">
+                      <label class="flutter-label">EMAIL ADDRESS</label>
+                      <input type="email" class="flutter-input" value="alex.morgan@vaultmaster.app" readonly>
+                    </div>
+
+                    <!-- PASSWORD FIELD -->
+                    <div class="flutter-input-group" style="margin-bottom: 24px;">
+                      <label class="flutter-label">PASSWORD</label>
+                      <div style="position: relative;">
+                        <input type="password" class="flutter-input" value="••••••••" readonly style="padding-right: 42px;">
+                        <button type="button" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: var(--flutter-outline); cursor: pointer;">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- SIGN IN BUTTON (`ElevatedButton`) -->
+                    <button onclick="simulateGoogleLogin()" class="flutter-btn-elevated">
+                      <span>SIGN IN</span>
+                    </button>
+
+                    <!-- DIVIDER ROW "OR CONTINUE WITH" -->
+                    <div style="display: flex; align-items: center; gap: 12px; margin: 24px 0;">
+                      <div style="flex: 1; height: 1px; background: var(--flutter-outline-variant);"></div>
+                      <span style="font-size: 11px; font-weight: 600; color: var(--flutter-outline); letter-spacing: 0.03em;">OR CONTINUE WITH</span>
+                      <div style="flex: 1; height: 1px; background: var(--flutter-outline-variant);"></div>
+                    </div>
+
+                    <!-- MODERN CUSTOM GOOGLE SIGN-IN BUTTON (`OutlinedButton`) -->
+                    <button onclick="simulateGoogleLogin()" id="google-login-btn" class="flutter-btn-outlined">
+                      <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-8.87z"/><path fill="#34A853" d="M12 24c3.3 0 6.08-1.09 8.11-2.96l-3.88-3.05c-1.1.74-2.5 1.18-4.23 1.18-3.25 0-6.01-2.19-6.99-5.14H1.01v3.15C3.06 21.23 7.24 24 12 24z"/><path fill="#FBBC05" d="M5.01 14.03c-.25-.74-.39-1.54-.39-2.36s.14-1.62.39-2.36V6.16H1.01C.37 7.45 0 8.94 0 10.51s.37 3.06 1.01 4.35l4-3.15z"/><path fill="#EA4335" d="M12 4.75c1.8 0 3.41.62 4.68 1.83l3.51-3.51C18.07 1.14 15.3 0 12 0 7.24 0 3.06 2.77 1.01 6.16l4 3.15c.98-2.95 3.74-5.14 6.99-5.14z"/></svg>
+                      <span id="google-btn-text">CONTINUE WITH GOOGLE</span>
+                    </button>
+                  </div>
+
+                  <!-- Toggle Auth Mode Text -->
+                  <div style="text-align: center; margin-top: 24px; font-size: 14px; color: var(--flutter-on-surface-variant);">
+                    Don't have an account? <span style="color: var(--flutter-primary); font-weight: 600; cursor: pointer;">Sign Up</span>
+                  </div>
                 </div>
               </div>
 
-              <!-- Interactive Actions -->
-              <div style="margin-bottom: 1.5rem; display: flex; gap: 8px;">
-                <button onclick="simulateScan()" class="btn btn-primary" style="flex: 1; padding: 10px; font-size: 0.85rem;">📸 Scan New</button>
-                <button onclick="simulateLock()" class="btn btn-outline" style="flex: 1; padding: 10px; font-size: 0.85rem;">🔒 Lock Vault</button>
-              </div>
+              <!-- SCREEN 2: EXACT FLUTTER DASHBOARD SCREEN (`DashboardScreen.dart` / `Nexus Archive`) -->
+              <div id="flutter-screen-dashboard" class="flutter-screen hidden">
+                
+                <!-- Navy AppBar -->
+                <div class="flutter-appbar navy">
+                  <span class="flutter-appbar-title">Nexus Archive</span>
+                  <div style="display: flex; align-items: center; gap: 4px;">
+                    <button onclick="simulateLock()" title="Security Vault" style="background: transparent; border: none; cursor: pointer; color: #FFC107; padding: 6px; display: flex; align-items: center;">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </button>
+                    <button onclick="logoutSandbox()" title="Logout" style="background: transparent; border: none; cursor: pointer; color: #FFFFFF; padding: 6px; display: flex; align-items: center;">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    </button>
+                  </div>
+                </div>
 
-              <!-- Document List -->
-              <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase;">RECENT ASSETS</div>
-              <div id="sim-doc-list" style="display: flex; flex-direction: column; gap: 10px;">
-                <div class="sim-card" style="background: #FFF; padding: 12px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
-                  <div style="display: flex; align-items: center; gap: 10px;">
-                    <span style="font-size: 1.4rem;">📄</span>
+                <!-- Storage Usage Card (`_StorageUsageCard`) -->
+                <div class="flutter-storage-card">
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                     <div>
-                      <div style="font-weight: 700; font-size: 0.9rem;">Tax Return 2025.pdf</div>
-                      <div style="font-size: 0.75rem; color: var(--text-muted);"><span style="color:#D32F2F">■</span> PDF • 2.4 MB</div>
+                      <div style="font-weight: 700; font-size: 14px; color: var(--flutter-on-surface);">Storage Usage</div>
+                      <div style="font-size: 12px; font-weight: 700; color: var(--flutter-primary); margin-top: 2px;">6 Documents</div>
+                    </div>
+                    <div style="text-align: right;">
+                      <div style="font-size: 12px; color: var(--flutter-on-surface-variant);">14.2 MB / 1.0 GB</div>
+                      <div style="font-size: 10px; color: var(--flutter-on-surface-variant); margin-top: 2px;">Images: 2 • PDFs: 3 • Other: 1</div>
                     </div>
                   </div>
-                  <span style="font-size: 0.8rem; color: var(--success); font-weight: 700;">Synced</span>
+                  <div class="flutter-progress-bg">
+                    <div class="flutter-progress-fill"></div>
+                  </div>
                 </div>
-                <div class="sim-card" style="background: #FFF; padding: 12px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
-                  <div style="display: flex; align-items: center; gap: 10px;">
-                    <span style="font-size: 1.4rem;">📊</span>
-                    <div>
-                      <div style="font-weight: 700; font-size: 0.9rem;">Q4 Financial Audit.xlsx</div>
-                      <div style="font-size: 0.75rem; color: var(--text-muted);"><span style="color:#388E3C">■</span> Spreadsheet • 840 KB</div>
+
+                <!-- Search and Sort Bar (`_SearchAndSortBar`) -->
+                <div style="padding: 0 16px; display: flex; gap: 8px; margin-bottom: 8px;">
+                  <div style="flex: 1; position: relative;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--flutter-on-surface-variant)" stroke-width="2" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" id="flutter-search" placeholder="Search documents..." oninput="filterDocuments()" style="width: 100%; padding: 10px 12px 10px 38px; border-radius: var(--flutter-radius-lg); border: none; background: var(--flutter-surface); font-size: 13.5px; color: var(--flutter-on-surface); outline: none; box-sizing: border-box;">
+                  </div>
+                  <div style="background: var(--flutter-surface); border-radius: var(--flutter-radius-lg); padding: 0 12px; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--flutter-on-surface); cursor: pointer;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--flutter-on-surface-variant)" stroke-width="2"><line x1="4" y1="6" x2="16" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="12" y2="18"/></svg>
+                    <span>Date</span>
+                  </div>
+                </div>
+
+                <!-- Category Filter Pills (`FilterChip`) -->
+                <div style="display: flex; gap: 8px; overflow-x: auto; padding: 4px 16px 8px 16px; flex-shrink: 0;" class="hide-scrollbar">
+                  <button class="flutter-chip selected" onclick="filterCategory('All', this)">All</button>
+                  <button class="flutter-chip" onclick="filterCategory('Receipts', this)">Receipts</button>
+                  <button class="flutter-chip" onclick="filterCategory('IDs', this)">IDs & Cards</button>
+                  <button class="flutter-chip" onclick="filterCategory('Contracts', this)">Contracts</button>
+                  <button class="flutter-chip" onclick="filterCategory('Other', this)">Vaulted 🔒</button>
+                  <button class="flutter-chip" onclick="showAddCategory()" style="border-color: var(--flutter-primary); color: var(--flutter-primary); font-weight: 700;">+ Add</button>
+                </div>
+
+                <!-- Document List Feed (`_DocumentCard`) -->
+                <div id="flutter-doc-list" style="flex: 1; overflow-y: auto; padding: 8px 16px 80px 16px;">
+                  
+                  <div class="flutter-doc-card doc-item" data-cat="Receipts" data-name="Tax Return 2025 W2.pdf">
+                    <div class="flutter-doc-icon" style="background: rgba(211, 47, 47, 0.1); color: #D32F2F;">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"/></svg>
+                    </div>
+                    <div style="flex: 1; overflow: hidden;">
+                      <div style="font-weight: 600; font-size: 15px; color: var(--flutter-on-surface); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tax Return 2025 W2.pdf</div>
+                      <div style="font-size: 12px; color: var(--flutter-on-surface-variant); margin-top: 3px;">2026-07-17 • 2.5 MB</div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="#00E5FF"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                      <button onclick="simulateLock()" title="Move to Vault" style="background: transparent; border: none; color: #FFC107; cursor: pointer; padding: 4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></button>
+                      <button onclick="this.closest('.doc-item').remove()" title="Delete" style="background: transparent; border: none; color: var(--flutter-outline); cursor: pointer; padding: 4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
                     </div>
                   </div>
-                  <span style="font-size: 0.8rem; color: var(--success); font-weight: 700;">Synced</span>
-                </div>
-                <div class="sim-card" style="background: #FFF; padding: 12px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
-                  <div style="display: flex; align-items: center; gap: 10px;">
-                    <span style="font-size: 1.4rem;">📝</span>
-                    <div>
-                      <div style="font-weight: 700; font-size: 0.9rem;">Client Contract Rev3.docx</div>
-                      <div style="font-size: 0.75rem; color: var(--text-muted);"><span style="color:#1976D2">■</span> Word • 1.1 MB</div>
+
+                  <div class="flutter-doc-card doc-item" data-cat="IDs" data-name="Passport Biometric Scan.png">
+                    <div class="flutter-doc-icon" style="background: rgba(245, 124, 0, 0.1); color: #F57C00;">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    </div>
+                    <div style="flex: 1; overflow: hidden;">
+                      <div style="font-weight: 600; font-size: 15px; color: var(--flutter-on-surface); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Passport Biometric Scan.png</div>
+                      <div style="font-size: 12px; color: var(--flutter-on-surface-variant); margin-top: 3px;">2026-07-16 • 4.1 MB</div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="#00E5FF"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                      <button onclick="simulateLock()" title="Move to Vault" style="background: transparent; border: none; color: #FFC107; cursor: pointer; padding: 4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></button>
+                      <button onclick="this.closest('.doc-item').remove()" title="Delete" style="background: transparent; border: none; color: var(--flutter-outline); cursor: pointer; padding: 4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
                     </div>
                   </div>
-                  <span style="font-size: 0.8rem; color: var(--success); font-weight: 700;">Synced</span>
+
+                  <div class="flutter-doc-card doc-item" data-cat="Contracts" data-name="Real Estate Lease Contract 2026.pdf">
+                    <div class="flutter-doc-icon" style="background: rgba(211, 47, 47, 0.1); color: #D32F2F;">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"/></svg>
+                    </div>
+                    <div style="flex: 1; overflow: hidden;">
+                      <div style="font-weight: 600; font-size: 15px; color: var(--flutter-on-surface); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Real Estate Lease Contract 2026.pdf</div>
+                      <div style="font-size: 12px; color: var(--flutter-on-surface-variant); margin-top: 3px;">2026-07-15 • 3.9 MB</div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="#00E5FF"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                      <button onclick="simulateLock()" title="Move to Vault" style="background: transparent; border: none; color: #FFC107; cursor: pointer; padding: 4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></button>
+                      <button onclick="this.closest('.doc-item').remove()" title="Delete" style="background: transparent; border: none; color: var(--flutter-outline); cursor: pointer; padding: 4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+                    </div>
+                  </div>
+
+                  <div class="flutter-doc-card doc-item" data-cat="Other" data-name="Hardware Wallet Seed Phrase.txt" onclick="simulateLock()" style="background: #FFFBF0; border-color: #FFE082; cursor: pointer;">
+                    <div class="flutter-doc-icon" style="background: rgba(255, 193, 7, 0.15); color: #FFA000;">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <div style="flex: 1; overflow: hidden;">
+                      <div style="font-weight: 700; font-size: 15px; color: #D84315; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Hardware Wallet Seed Phrase.txt</div>
+                      <div style="font-size: 12px; color: #F57C00; margin-top: 3px;">PIN Required • AES-256 Encrypted</div>
+                    </div>
+                    <span style="background: #FFA000; color: #FFFFFF; padding: 3px 8px; border-radius: var(--flutter-radius-sm); font-size: 11px; font-weight: 700;">PIN Required</span>
+                  </div>
+
+                  <div class="flutter-doc-card doc-item" data-cat="IDs" data-name="Health Insurance Policy Card.pdf">
+                    <div class="flutter-doc-icon" style="background: rgba(211, 47, 47, 0.1); color: #D32F2F;">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"/></svg>
+                    </div>
+                    <div style="flex: 1; overflow: hidden;">
+                      <div style="font-weight: 600; font-size: 15px; color: var(--flutter-on-surface); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Health Insurance Policy Card.pdf</div>
+                      <div style="font-size: 12px; color: var(--flutter-on-surface-variant); margin-top: 3px;">2026-07-12 • 1.9 MB</div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="#00E5FF"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                      <button onclick="simulateLock()" title="Move to Vault" style="background: transparent; border: none; color: #FFC107; cursor: pointer; padding: 4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></button>
+                      <button onclick="this.closest('.doc-item').remove()" title="Delete" style="background: transparent; border: none; color: var(--flutter-outline); cursor: pointer; padding: 4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+                    </div>
+                  </div>
+
                 </div>
+
+                <!-- Floating Action Button (+ Add / Scan) (`FAB`) -->
+                <button class="flutter-fab" onclick="simulateScan()" title="Scan / Add Document">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </button>
+
               </div>
             </div>
           </div>
@@ -200,38 +347,121 @@
       }
     }
 
-    // Auto-check and initialize Flutter sandbox view right away on page load
+    // Auto-check and initialize sandbox view on page load
     window.addEventListener('DOMContentLoaded', () => {
-      switchDemoMode('flutter');
+      switchDemoMode('sandbox');
     });
+
+    function showSnackbar(message) {
+      const snack = document.getElementById('flutter-snackbar');
+      document.getElementById('flutter-snackbar-msg').innerText = message;
+      snack.classList.add('show');
+      setTimeout(() => {
+        snack.classList.remove('show');
+      }, 3500);
+    }
+
+    function simulateGoogleLogin() {
+      const text = document.getElementById('google-btn-text');
+      if (text) text.innerText = 'AUTHENTICATING...';
+      
+      setTimeout(() => {
+        showSnackbar('OK you are sign in');
+        
+        const screenLogin = document.getElementById('flutter-screen-login');
+        const screenDash = document.getElementById('flutter-screen-dashboard');
+        
+        screenLogin.classList.remove('active');
+        screenLogin.classList.add('hidden');
+        
+        setTimeout(() => {
+          if (text) text.innerText = 'CONTINUE WITH GOOGLE';
+          screenDash.classList.remove('hidden');
+          screenDash.classList.add('active');
+        }, 150);
+      }, 500);
+    }
+
+    function logoutSandbox() {
+      showSnackbar('Signed out of Nexus Archive.');
+      const screenLogin = document.getElementById('flutter-screen-login');
+      const screenDash = document.getElementById('flutter-screen-dashboard');
+      
+      screenDash.classList.remove('active');
+      screenDash.classList.add('hidden');
+      
+      setTimeout(() => {
+        screenLogin.classList.remove('hidden');
+        screenLogin.classList.add('active');
+      }, 150);
+    }
+
+    let currentCat = 'All';
+    function filterCategory(cat, chipEl) {
+      currentCat = cat;
+      document.querySelectorAll('.flutter-chip').forEach(c => c.classList.remove('selected'));
+      if (chipEl) chipEl.classList.add('selected');
+      filterDocuments();
+    }
+
+    function filterDocuments() {
+      const query = document.getElementById('flutter-search').value.toLowerCase();
+      document.querySelectorAll('.doc-item').forEach(item => {
+        const cat = item.getAttribute('data-cat');
+        const name = item.getAttribute('data-name').toLowerCase();
+        
+        const catMatch = (currentCat === 'All') || (cat === currentCat);
+        const nameMatch = name.includes(query);
+        
+        if (catMatch && nameMatch) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
 
     let scanCounter = 1;
     function simulateScan() {
-      const docList = document.getElementById('sim-doc-list');
+      const docList = document.getElementById('flutter-doc-list');
       const newCard = document.createElement('div');
-      newCard.className = 'sim-card';
-      newCard.style.cssText = 'background: #FFF; padding: 12px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; animation: fadeInUp 0.3s ease-out;';
+      newCard.className = 'flutter-doc-card doc-item';
+      newCard.setAttribute('data-cat', 'Receipts');
+      newCard.setAttribute('data-name', `Scanned Receipt #${scanCounter}.pdf`);
       newCard.innerHTML = `
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="font-size: 1.4rem;">📸</span>
-          <div>
-            <div style="font-weight: 700; font-size: 0.9rem;">Scanned Receipt #${scanCounter}.pdf</div>
-            <div style="font-size: 0.75rem; color: var(--text-muted);"><span style="color:#D32F2F">■</span> PDF • 420 KB</div>
-          </div>
+        <div class="flutter-doc-icon" style="background: rgba(211, 47, 47, 0.1); color: #D32F2F;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"/></svg>
         </div>
-        <span style="font-size: 0.8rem; color: var(--success); font-weight: 700;">Synced</span>
+        <div style="flex: 1; overflow: hidden;">
+          <div style="font-weight: 600; font-size: 15px; color: var(--flutter-on-surface); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Scanned Receipt #${scanCounter}.pdf</div>
+          <div style="font-size: 12px; color: var(--flutter-on-surface-variant); margin-top: 3px;">Just now • 420 KB</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#00E5FF"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+          <button onclick="simulateLock()" title="Move to Vault" style="background: transparent; border: none; color: #FFC107; cursor: pointer; padding: 4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></button>
+          <button onclick="this.closest('.doc-item').remove()" title="Delete" style="background: transparent; border: none; color: var(--flutter-outline); cursor: pointer; padding: 4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+        </div>
       `;
       docList.prepend(newCard);
+      showSnackbar(`Scanned Receipt #${scanCounter}.pdf ingested into Nexus Archive.`);
       scanCounter++;
-      document.getElementById('sim-count').innerText = (3 + scanCounter) + ' Files';
+      filterDocuments();
     }
 
     function simulateLock() {
-      const pin = prompt('Enter 4-digit PIN to unlock VaultMaster (Try: 1234):');
+      const pin = prompt('Enter 4-digit Master PIN to unlock Security Vault (Try: 1234):');
       if (pin === '1234') {
-        alert('✅ Biometric/PIN Verification Successful. Welcome back!');
+        alert('✅ Security Verification Successful.\n\n🔐 Vaulted Document Content:\n"Hardware Wallet Seed Phrase: witch collapse practice feed shame open despair creek road again ice crown"\n\n(Auto-locking on modal close)');
+        showSnackbar('🔓 Security Vault Unlocked');
       } else if (pin !== null) {
         alert('❌ Incorrect PIN. Security Vault Remains Locked.');
+      }
+    }
+
+    function showAddCategory() {
+      const cat = prompt('Enter new category name:');
+      if (cat && cat.trim()) {
+        showSnackbar(`Category "${cat.trim()}" added.`);
       }
     }
   </script>

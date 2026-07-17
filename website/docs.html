@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docs — VaultMaster Getting Started Guide</title>
+    <meta name="description" content="Get up and running with VaultMaster in under a minute. Installation guide, document scanning instructions, file import tips, and security vault setup.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Docs — VaultMaster Getting Started Guide">
+    <meta property="og:description" content="Get up and running with VaultMaster in under a minute. Learn how to install, scan documents, and secure assets offline.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/hero-mockup-light.jpg">
+
+    <!-- CSS -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ── Navbar ────────────────────────────────────────── -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-text"><span class="brand-icon">🛡️</span>Vault<span>Master</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="comparison.html">Compare</a></li>
+            <li><a href="demo.html">Demo</a></li>
+            <li><a href="docs.html" class="active">Docs</a></li>
+            <li><a href="download.html" class="btn btn-primary">Download</a></li>
+        </ul>
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
+    </nav>
+
+    <!-- ── Main Docs Layout ──────────────────────────────── -->
+    <main class="docs-layout container animate-in">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <h4>Getting Started</h4>
+            <ul>
+                <li><a href="#installation" class="active">Installation</a></li>
+                <li><a href="#first-scan">Your First Scan</a></li>
+                <li><a href="#importing-files">Importing Files</a></li>
+                <li><a href="#security-vault">Setting Up Security Vault</a></li>
+            </ul>
+
+            <h4>Features</h4>
+            <ul>
+                <li><a href="features.html#categorization">Categories & Tagging</a></li>
+                <li><a href="features.html#vault">PIN & Biometric Lock</a></li>
+                <li><a href="features.html#cloud">Background Cloud Sync</a></li>
+            </ul>
+
+            <h4>About</h4>
+            <ul>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="https://github.com/AliAhmedoo5/VaultMaster" target="_blank" rel="noopener">Open Source Repo</a></li>
+            </ul>
+        </aside>
+
+        <!-- Documentation Content -->
+        <section class="docs-content">
+            <h1>Getting Started</h1>
+            <p class="lead">Get up and running with VaultMaster in under a minute.</p>
+
+            <!-- Installation Section -->
+            <h2 id="installation">Installation</h2>
+            <p>VaultMaster is distributed directly via GitHub Releases as a verified Android APK package, giving you complete control over your app installation without third-party store tracking.</p>
+
+            <div class="step-item animate-in animate-delay-1" style="margin-top: 1.5rem;">
+                <p><span class="step-number">1</span><strong>Download the latest APK from GitHub Releases</strong></p>
+                <div class="code-block">
+                    <span class="code-prompt">→</span> https://github.com/AliAhmedoo5/VaultMaster/releases/latest
+                </div>
+            </div>
+
+            <div class="step-item animate-in animate-delay-2" style="margin-top: 1.25rem;">
+                <p><span class="step-number">2</span><strong>Enable "Install from unknown sources"</strong></p>
+                <p style="margin-left: 2.25rem; font-size: 0.95rem;">On your Android device, open <em>Settings &gt; Security &gt; Install unknown apps</em> (or <em>Apps &gt; Special app access</em>), select your browser or file manager, and toggle on <strong>Allow from this source</strong>.</p>
+            </div>
+
+            <div class="step-item animate-in animate-delay-3" style="margin-top: 1.25rem;">
+                <p><span class="step-number">3</span><strong>Open the APK file and tap Install</strong></p>
+                <p style="margin-left: 2.25rem; font-size: 0.95rem;">Locate the downloaded `app-release.apk` in your notification tray or Downloads folder and tap it to complete installation.</p>
+            </div>
+
+            <div class="step-item animate-in animate-delay-4" style="margin-top: 1.25rem;">
+                <p><span class="step-number">4</span><strong>Launch VaultMaster and create your account</strong></p>
+                <p style="margin-left: 2.25rem; font-size: 0.95rem;">You can sign in using your standard email address or use Google Sign-In for instant authentication. Once signed in, your offline workspace initializes automatically.</p>
+            </div>
+
+            <!-- First Scan Section -->
+            <h2 id="first-scan" style="margin-top: 3.5rem;">Your First Scan</h2>
+            <p>VaultMaster integrates Google ML Kit Document Scanner natively for real-time edge detection and perspective adjustment.</p>
+            <p>To capture your first physical document, tap the glowing floating action button (`+`) on the bottom right of the dashboard and select <strong>Scan Document</strong>. Point your camera at any paper receipt, contract, or ID card. The intelligent scanner will automatically highlight the edges, snap the frame cleanly, correct tilt angles, and allow you to compile multiple pages into a crisp, unified PDF document. Assign it to a category before saving.</p>
+
+            <!-- Importing Files Section -->
+            <h2 id="importing-files" style="margin-top: 3.5rem;">Importing Files</h2>
+            <p>Already have digital documents stored across your device? You can consolidate them right into your pocket filing cabinet.</p>
+            <p>Tap the floating action button and choose <strong>Import File</strong>. VaultMaster supports importing `PDF`, `DOCX`, `XLSX`, `TXT`, `PNG`, and `JPG` files directly from local storage. Upon ingestion, the app's categorization engine applies semantic color coding (<span style="color:#EF5350">■</span> Red for PDFs, <span style="color:#42A5F5">■</span> Blue for Word/Text, <span style="color:#66BB6A">■</span> Green for Spreadsheets, <span style="color:#FFA726">■</span> Orange for Images) so you can rapidly triage files visually.</p>
+
+            <!-- Setting Up Security Vault Section -->
+            <h2 id="security-vault" style="margin-top: 3.5rem;">Setting Up Security Vault</h2>
+            <p>For confidential documents like tax returns, passwords, or personal contracts, VaultMaster offers a dedicated encrypted vault.</p>
+            <p>Navigate to the <strong>Vault</strong> tab from the bottom navigation bar. On your first visit, you will be prompted to create a secure 4-digit PIN (or authorize native device biometrics such as FaceID or Fingerprint via OS keychain encryption). To move a document into the vault, tap the three-dot action menu on any file card and select <strong>Move to Vault</strong>. The high-security vault automatically locks itself the exact moment you background the app, switch tasks, or lock your phone screen.</p>
+
+            <!-- FAQ Section -->
+            <h2 id="faq" style="margin-top: 3.5rem;">Frequently Asked Questions</h2>
+            <div style="margin-top: 1.5rem;">
+                <h4>Does VaultMaster work without an internet connection?</h4>
+                <p>Yes! VaultMaster is built with an offline-first architecture. All files, folders, and metadata are stored and indexed locally on your device. When internet connectivity returns, background synchronization seamlessly backs up encrypted assets to Cloudinary and Firebase Firestore.</p>
+
+                <h4 style="margin-top: 1.5rem;">Where are my documents stored?</h4>
+                <p>Locally, documents reside in private app storage on your Android device. In the cloud, your assets are synchronized to your designated secure storage bucket, accessible only to your authenticated user profile.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ── Footer ────────────────────────────────────────── -->
+    <footer class="footer">
+        <p class="footer-text">&copy; 2026 VaultMaster. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="https://github.com/AliAhmedoo5/VaultMaster" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://github.com/AliAhmedoo5/VaultMaster/issues" target="_blank" rel="noopener">Issues</a>
+            <a href="https://github.com/AliAhmedoo5/VaultMaster/releases" target="_blank" rel="noopener">Releases</a>
+        </div>
+    </footer>
+
+</body>
+</html>

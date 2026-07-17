@@ -13,14 +13,16 @@
 
 ## 📚 Senior Developer Documentation Suite & Web Ecosystem
 
-VaultMaster features an exhaustive, production-grade **5-Part Senior Developer Documentation Suite** stored directly in the `docs/` workspace, along with a zero-install **Pixel-to-Pixel Interactive Web Sandbox**:
+VaultMaster features an exhaustive, production-grade **7-Part Senior Developer Documentation Suite** stored directly in the `docs/` workspace, along with a zero-install **Pixel-to-Pixel Interactive Web Sandbox**:
 
 * 📄 **[01_prd.md](file:///E:/Projects/vaultmaster/docs/01_prd.md) — Product Requirements Document (PRD)**: Executive summary, target personas & Mermaid mindmaps, prioritized features (P0/P1/P2), and 10+ detailed user stories with strict `Given / When / Then` acceptance criteria.
-* 📐 **[02_trd.md](file:///E:/Projects/vaultmaster/docs/02_trd.md) — Technical Requirements Document (TRD)**: System architecture overview, exact tech stack versions (`Flutter >=3.22`, `SQLCipher`, `ML Kit`), directory tree, database/TypeScript data schemas, security rules, and offline cloud strategies.
-* 🧭 **[03_user_flows.md](file:///E:/Projects/vaultmaster/docs/03_user_flows.md) — User Flows & Screen Map**: Mermaid state graphs across all screens (`Welcome` rotating wheel, `Login`, `Splash` icon, `Dashboard`, `Scanner`, `PIN Vault`) plus end-to-end exception/edge case flowcharts.
+* 📐 **[02_trd.md](file:///E:/Projects/vaultmaster/docs/02_trd.md) — Technical Requirements Document (TRD)**: System architecture overview, exact tech stack versions (`Flutter ^3.5.0`, `flutter_secure_storage`, `cunning_document_scanner`), directory tree, data models, security rules, and offline/cloud sync strategies.
+* 🧭 **[03_user_flows.md](file:///E:/Projects/vaultmaster/docs/03_user_flows.md) — User Flows & Screen Map**: Mermaid state graphs across all screens (`Welcome`, `Login`, `Splash`, `Dashboard`, `Scanner`, `PIN Vault`) plus end-to-end exception/edge case flowcharts.
 * 🚀 **[04_project_plan.md](file:///E:/Projects/vaultmaster/docs/04_project_plan.md) — Project Implementation Plan**: Phased task checklists (`[x]`), hourly estimates (`120 Hours total`), milestone progress table, and Mermaid dependency roadmap.
 * 🧪 **[05_testing_plan.md](file:///E:/Projects/vaultmaster/docs/05_testing_plan.md) — QA & Testing Plan**: Testing pyramid strategy, detailed acceptance test matrices across Unit/Widget/Integration layers, and complete Playwright E2E scenarios.
-* 🌐 **[Interactive Web Sandbox (`demo.html`)](file:///E:/Projects/vaultmaster/website/demo.html)**: Live Vanilla HTML/JS browser mockup (`https://aliahmedoo5.github.io/VaultMaster/demo.html`) replicating authentic startup animations (`WelcomeScreen` rotating dial & `SplashScreen` scaling icon) without requiring APK installation.
+* 🧠 **[06_ux_psychology_audit.md](file:///E:/Projects/vaultmaster/docs/06_ux_psychology_audit.md) — UX Peak Psychology Audit**: Rigorous evaluation against 6 core UX psychology principles (`Decision Fatigue`, `Goal Gradient`, `Reciprocity`, `IKEA Effect`, `Contrast & Anchoring`, `Loss Aversion`).
+* 📊 **[07_project_status_report.md](file:///E:/Projects/vaultmaster/docs/07_project_status_report.md) — Project Status & Comprehensive Work Report**: Executive summary of all completed mobile/web features, security audits, ponytail code evaluations, and live cloud deployment status.
+* 🌐 **[Interactive Web Sandbox (`demo.html`)](https://vaultmasterapp.web.app/demo.html)**: Live Vanilla HTML/JS browser mockup replicating authentic app workflows (`Scan Document` ➔ `Lock inside PIN Vault` ➔ `Unlock with Passcode` ➔ `Verify & View`) with dynamic zoom controls and setup progress guidance.
 
 ---
 

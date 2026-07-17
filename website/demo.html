@@ -9,6 +9,7 @@
   <meta property="og:description" content="Experience VaultMaster live right inside your browser in our interactive phone screen mockup.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/hero-mockup-light.jpg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -42,8 +43,8 @@
         
         <!-- Mode Switch Tabs -->
         <div class="demo-tabs">
-          <button class="demo-tab-btn active" id="tab-flutter" onclick="switchDemoMode('flutter')">⚡ Flutter Web Canvas (CI/CD)</button>
-          <button class="demo-tab-btn" id="tab-sandbox" onclick="switchDemoMode('sandbox')">🎨 Interactive Sandbox</button>
+          <button class="demo-tab-btn" id="tab-flutter" onclick="switchDemoMode('flutter')">⚡ Flutter Web Canvas (CI/CD)</button>
+          <button class="demo-tab-btn active" id="tab-sandbox" onclick="switchDemoMode('sandbox')">🎨 Interactive Sandbox</button>
         </div>
 
         <!-- Smartphone Mockup Wrapper -->
@@ -52,10 +53,10 @@
             <div class="phone-notch"></div>
             
             <!-- Flutter Web App Iframe -->
-            <iframe src="app/index.html" id="flutter-iframe" title="VaultMaster Flutter Web App" class="app-iframe" allow="camera; clipboard-read; clipboard-write; fullscreen"></iframe>
+            <iframe src="app/index.html" id="flutter-iframe" title="VaultMaster Flutter Web App" class="app-iframe" style="display: none;" allow="camera; clipboard-read; clipboard-write; fullscreen"></iframe>
 
-            <!-- Sandbox Simulation (Hidden initially) -->
-            <div id="sandbox-view" style="display: none; padding: 48px 20px 20px; height: 100%; overflow-y: auto; background: var(--bg-primary);">
+            <!-- Sandbox Simulation (Default active view) -->
+            <div id="sandbox-view" style="padding: 48px 20px 20px; height: 100%; overflow-y: auto; background: var(--bg-primary);">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
                 <div>
                   <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">WORKSPACE</div>

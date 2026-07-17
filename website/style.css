@@ -1339,6 +1339,115 @@ section {
     transform: scale(1.05);
 }
 
+/* Welcome Screen (`WelcomeScreen.dart`) */
+.flutter-screen-welcome {
+    background: #FFFFFF !important;
+    color: #0A0A0C;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.welcome-header-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+.welcome-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--flutter-primary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+}
+.welcome-logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--flutter-primary);
+    letter-spacing: -0.5px;
+}
+.vault-illustration-box {
+    width: 220px;
+    height: 220px;
+    margin: 20px auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.vault-outer-frame {
+    width: 160px;
+    height: 160px;
+    border: 3px solid var(--flutter-primary);
+    border-radius: 32px;
+    background: #FFFFFF;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(26, 35, 126, 0.08);
+}
+.vault-inner-frame {
+    width: 136px;
+    height: 136px;
+    border: 2px solid rgba(26, 35, 126, 0.15);
+    border-radius: 24px;
+    position: absolute;
+}
+.vault-rivet {
+    width: 6px;
+    height: 6px;
+    background: rgba(26, 35, 126, 0.4);
+    border-radius: 50%;
+    position: absolute;
+}
+.vault-rivet.tl { top: 10px; left: 10px; }
+.vault-rivet.tr { top: 10px; right: 10px; }
+.vault-rivet.bl { bottom: 10px; left: 10px; }
+.vault-rivet.br { bottom: 10px; right: 10px; }
+
+@keyframes rotateWheel {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.vault-rotating-wheel {
+    width: 80px;
+    height: 80px;
+    border: 2.5px solid var(--flutter-primary);
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: rotateWheel 15s linear infinite;
+}
+.wheel-notch {
+    position: absolute;
+    width: 2px;
+    height: 8px;
+    background: var(--flutter-primary);
+    top: 0;
+    left: calc(50% - 1px);
+    transform-origin: 50% 40px;
+}
+.wheel-center-knob {
+    width: 28px;
+    height: 28px;
+    background: var(--flutter-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 700;
+}
+
 /* Splash Screen (`SplashScreen.dart`) */
 .flutter-screen-splash {
     background: var(--flutter-primary) !important;

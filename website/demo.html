@@ -78,25 +78,66 @@
                 <span id="flutter-snackbar-msg">OK you are sign in</span>
               </div>
 
-              <!-- SCREEN 0: EXACT FLUTTER SPLASH SCREEN (`SplashScreen.dart`) -->
-              <div id="flutter-screen-splash" class="flutter-screen active flutter-screen-splash">
+              <!-- SCREEN 0: EXACT FLUTTER WELCOME SCREEN (`WelcomeScreen.dart` - Rotating Wheel on App Launch) -->
+              <div id="flutter-screen-welcome" class="flutter-screen active flutter-screen-welcome">
+                <div class="welcome-header-badge">
+                  <div class="welcome-logo-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  </div>
+                  <div class="welcome-logo-text">VaultMaster</div>
+                </div>
+
+                <div class="vault-illustration-box">
+                  <div class="vault-outer-frame">
+                    <div class="vault-inner-frame"></div>
+                    <div class="vault-rivet tl"></div>
+                    <div class="vault-rivet tr"></div>
+                    <div class="vault-rivet bl"></div>
+                    <div class="vault-rivet br"></div>
+                    
+                    <!-- Animated Rotating Safe Wheel (`_VaultPainter` rotating dial) -->
+                    <div class="vault-rotating-wheel">
+                      <div class="wheel-notch" style="transform: rotate(0deg);"></div>
+                      <div class="wheel-notch" style="transform: rotate(45deg);"></div>
+                      <div class="wheel-notch" style="transform: rotate(90deg);"></div>
+                      <div class="wheel-notch" style="transform: rotate(135deg);"></div>
+                      <div class="wheel-notch" style="transform: rotate(180deg);"></div>
+                      <div class="wheel-notch" style="transform: rotate(225deg);"></div>
+                      <div class="wheel-notch" style="transform: rotate(270deg);"></div>
+                      <div class="wheel-notch" style="transform: rotate(315deg);"></div>
+                      <div class="wheel-center-knob">+</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h2 style="font-size: 25px; font-weight: 800; color: #1A237E; text-align: center; line-height: 1.25; margin: 0 0 12px 0; letter-spacing: -0.02em;">A pocket filing cabinet built for security.</h2>
+                  <p style="font-size: 14.5px; color: #546E7A; text-align: center; line-height: 1.45; margin: 0 0 28px 0;">Smart scanning, biometric protection, and offline-first encryption. Your confidential documents, exactly where they belong.</p>
+                  
+                  <button onclick="transitionToLogin()" class="flutter-btn-elevated" style="background: #1A237E; color: #FFFFFF; font-weight: 700; width: 100%; padding: 16px; border-radius: 14px; border: none; font-size: 15px; cursor: pointer; box-shadow: 0 4px 12px rgba(26, 35, 126, 0.25);">
+                    GET STARTED
+                  </button>
+                  <div style="text-align: center; font-size: 11px; font-weight: 600; color: #90A4AE; margin-top: 14px;">v1.0 • Secure Sync Enabled</div>
+                </div>
+              </div>
+
+              <!-- SCREEN 1: EXACT FLUTTER SPLASH SCREEN (`SplashScreen.dart` with Animated Icon & Text) -->
+              <div id="flutter-screen-splash" class="flutter-screen hidden flutter-screen-splash">
                 <div class="splash-content" id="splash-content-box">
                   <div class="splash-logo-box">
-                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1A237E 0%, #0D47A1 100%); display: flex; align-items: center; justify-content: center; position: relative;">
-                      <span style="font-size: 52px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));">🛡️</span>
-                    </div>
+                    <img src="assets/icon.png" alt="VaultMaster Icon" style="width: 100%; height: 100%; object-fit: cover; border-radius: 24px;">
                   </div>
                   <div class="splash-title">VaultMaster</div>
                   <div class="splash-subtitle" id="splash-status-text">Encrypted Storage • ML Kit</div>
                 </div>
               </div>
 
-              <!-- SCREEN 1: EXACT FLUTTER LOGIN SCREEN (`LoginScreen.dart`) -->
+              <!-- SCREEN 2: EXACT FLUTTER LOGIN SCREEN (`LoginScreen.dart`) -->
               <div id="flutter-screen-login" class="flutter-screen hidden" style="padding-bottom: 24px;">
                 
                 <!-- Transparent AppBar with Back Arrow -->
                 <div class="flutter-appbar transparent">
-                  <button title="Back" style="background: transparent; border: none; cursor: pointer; color: var(--flutter-primary); padding: 8px; display: flex; align-items: center; justify-content: center;">
+                  <button onclick="transitionToWelcome()" title="Back" style="background: transparent; border: none; cursor: pointer; color: var(--flutter-primary); padding: 8px; display: flex; align-items: center; justify-content: center;">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                   </button>
                   <div></div>
@@ -574,10 +615,35 @@
       }, duration);
     }
 
-    // Auto-check and initialize sandbox view on page load with SplashScreen
+    function transitionToLogin() {
+      const scrWelcome = document.getElementById('flutter-screen-welcome');
+      const scrLogin = document.getElementById('flutter-screen-login');
+      
+      scrWelcome.classList.remove('active');
+      scrWelcome.classList.add('hidden');
+      
+      setTimeout(() => {
+        scrLogin.classList.remove('hidden');
+        scrLogin.classList.add('active');
+      }, 150);
+    }
+
+    function transitionToWelcome() {
+      const scrLogin = document.getElementById('flutter-screen-login');
+      const scrWelcome = document.getElementById('flutter-screen-welcome');
+      
+      scrLogin.classList.remove('active');
+      scrLogin.classList.add('hidden');
+      
+      setTimeout(() => {
+        scrWelcome.classList.remove('hidden');
+        scrWelcome.classList.add('active');
+      }, 150);
+    }
+
+    // Auto-check and initialize sandbox view on page load showing WelcomeScreen
     window.addEventListener('DOMContentLoaded', () => {
       switchDemoMode('sandbox');
-      runSplashScreen('flutter-screen-login', 2200, 'Encrypted Storage • ML Kit');
     });
 
     function showSnackbar(message) {
@@ -595,16 +661,16 @@
       
       setTimeout(() => {
         if (text) text.innerText = 'CONTINUE WITH GOOGLE';
-        runSplashScreen('flutter-screen-dashboard', 1800, 'Syncing Nexus Archive...');
+        runSplashScreen('flutter-screen-dashboard', 2200, 'Syncing Nexus Archive...');
         setTimeout(() => {
           showSnackbar('OK you are sign in');
-        }, 1900);
+        }, 2300);
       }, 500);
     }
 
     function logoutSandbox() {
       showSnackbar('Signed out of Nexus Archive.');
-      runSplashScreen('flutter-screen-login', 1600, 'Logging out...');
+      runSplashScreen('flutter-screen-welcome', 1600, 'Logging out...');
     }
 
     let currentCat = 'All';

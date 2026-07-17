@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Demo — VaultMaster Interactive Workspace</title>
+  <meta name="description" content="Try out VaultMaster directly inside your browser. Experience the Flutter Web app inside an interactive phone screen with simulated document scanning and security vault.">
+  <meta property="og:title" content="Live Demo — VaultMaster Interactive Workspace">
+  <meta property="og:description" content="Experience VaultMaster live right inside your browser in our interactive phone screen mockup.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/hero-mockup-light.jpg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-text"><span class="brand-icon">🛡️</span>Vault<span>Master</span></a>
+    <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="comparison.html">Compare</a></li>
+      <li><a href="demo.html" class="active">Demo</a></li>
+      <li><a href="docs.html">Docs</a></li>
+      <li><a href="download.html" class="btn btn-primary">Download</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="hero" style="padding-bottom: 2rem;">
+      <div class="container animate-in">
+        <span class="badge">🛡️ Live Interactive Workspace</span>
+        <h1 style="margin-top: 1rem;">Experience VaultMaster Live.</h1>
+        <p class="lead">Test our offline-first document scanner and encrypted vault right from your browser. Switch between the full Flutter Web canvas build and the instant interactive simulation.</p>
+      </div>
+    </section>
+
+    <!-- Demo Content -->
+    <section style="padding-top: 0;">
+      <div class="container demo-container animate-in animate-delay-1">
+        
+        <!-- Mode Switch Tabs -->
+        <div class="demo-tabs">
+          <button class="demo-tab-btn active" id="tab-flutter" onclick="switchDemoMode('flutter')">⚡ Flutter Web Canvas (CI/CD)</button>
+          <button class="demo-tab-btn" id="tab-sandbox" onclick="switchDemoMode('sandbox')">🎨 Interactive Sandbox</button>
+        </div>
+
+        <!-- Smartphone Mockup Wrapper -->
+        <div class="phone-mockup-wrapper">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            
+            <!-- Flutter Web App Iframe -->
+            <iframe src="app/index.html" id="flutter-iframe" title="VaultMaster Flutter Web App" class="app-iframe" allow="camera; clipboard-read; clipboard-write; fullscreen"></iframe>
+
+            <!-- Sandbox Simulation (Hidden initially) -->
+            <div id="sandbox-view" style="display: none; padding: 48px 20px 20px; height: 100%; overflow-y: auto; background: var(--bg-primary);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">WORKSPACE</div>
+                  <h3 style="margin-bottom: 0;">My Vault</h3>
+                </div>
+                <div style="background: var(--accent-navy); color: #FFF; padding: 4px 10px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 700;">🔒 Armed</div>
+              </div>
+
+              <!-- Quick Stats -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem;">
+                <div style="background: #FFF; padding: 12px; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">DOCUMENTS</div>
+                  <div style="font-size: 1.25rem; font-weight: 800; color: var(--accent-navy);" id="sim-count">4 Files</div>
+                </div>
+                <div style="background: #FFF; padding: 12px; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">ENCRYPTION</div>
+                  <div style="font-size: 1.25rem; font-weight: 800; color: var(--success);">AES-256</div>
+                </div>
+              </div>
+
+              <!-- Interactive Actions -->
+              <div style="margin-bottom: 1.5rem; display: flex; gap: 8px;">
+                <button onclick="simulateScan()" class="btn btn-primary" style="flex: 1; padding: 10px; font-size: 0.85rem;">📸 Scan New</button>
+                <button onclick="simulateLock()" class="btn btn-outline" style="flex: 1; padding: 10px; font-size: 0.85rem;">🔒 Lock Vault</button>
+              </div>
+
+              <!-- Document List -->
+              <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase;">RECENT ASSETS</div>
+              <div id="sim-doc-list" style="display: flex; flex-direction: column; gap: 10px;">
+                <div class="sim-card" style="background: #FFF; padding: 12px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 1.4rem;">📄</span>
+                    <div>
+                      <div style="font-weight: 700; font-size: 0.9rem;">Tax Return 2025.pdf</div>
+                      <div style="font-size: 0.75rem; color: var(--text-muted);"><span style="color:#D32F2F">■</span> PDF • 2.4 MB</div>
+                    </div>
+                  </div>
+                  <span style="font-size: 0.8rem; color: var(--success); font-weight: 700;">Synced</span>
+                </div>
+                <div class="sim-card" style="background: #FFF; padding: 12px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 1.4rem;">📊</span>
+                    <div>
+                      <div style="font-weight: 700; font-size: 0.9rem;">Q4 Financial Audit.xlsx</div>
+                      <div style="font-size: 0.75rem; color: var(--text-muted);"><span style="color:#388E3C">■</span> Spreadsheet • 840 KB</div>
+                    </div>
+                  </div>
+                  <span style="font-size: 0.8rem; color: var(--success); font-weight: 700;">Synced</span>
+                </div>
+                <div class="sim-card" style="background: #FFF; padding: 12px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 1.4rem;">📝</span>
+                    <div>
+                      <div style="font-weight: 700; font-size: 0.9rem;">Client Contract Rev3.docx</div>
+                      <div style="font-size: 0.75rem; color: var(--text-muted);"><span style="color:#1976D2">■</span> Word • 1.1 MB</div>
+                    </div>
+                  </div>
+                  <span style="font-size: 0.8rem; color: var(--success); font-weight: 700;">Synced</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info Cards Below Phone -->
+        <div class="demo-info-grid">
+          <div class="card">
+            <h4>⚡ Cloud CI/CD Build</h4>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0;">The Flutter Web canvas is compiled directly from our `main` branch via GitHub Actions without consuming any local machine storage.</p>
+          </div>
+          <div class="card">
+            <h4>🔒 Offline & Biometrics</h4>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0;">On mobile devices, VaultMaster leverages Android Keystore / iOS Keychain for military-grade biometric authentication and offline caching.</p>
+          </div>
+          <div class="card">
+            <h4>📸 Smart ML Kit</h4>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0;">Our camera scanner automatically detects physical page boundaries, adjusts tilt angles, and compiles clean multi-page PDF documents.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer-text">&copy; 2026 VaultMaster. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="https://github.com/AliAhmedoo5/VaultMaster" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/AliAhmedoo5/VaultMaster/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/AliAhmedoo5/VaultMaster/releases" target="_blank" rel="noopener">Releases</a>
+    </div>
+  </footer>
+
+  <script>
+    function switchDemoMode(mode) {
+      const flutterTab = document.getElementById('tab-flutter');
+      const sandboxTab = document.getElementById('tab-sandbox');
+      const flutterIframe = document.getElementById('flutter-iframe');
+      const sandboxView = document.getElementById('sandbox-view');
+
+      if (mode === 'flutter') {
+        flutterTab.classList.add('active');
+        sandboxTab.classList.remove('active');
+        flutterIframe.style.display = 'block';
+        sandboxView.style.display = 'none';
+      } else {
+        sandboxTab.classList.add('active');
+        flutterTab.classList.remove('active');
+        flutterIframe.style.display = 'none';
+        sandboxView.style.display = 'block';
+      }
+    }
+
+    let scanCounter = 1;
+    function simulateScan() {
+      const docList = document.getElementById('sim-doc-list');
+      const newCard = document.createElement('div');
+      newCard.className = 'sim-card';
+      newCard.style.cssText = 'background: #FFF; padding: 12px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; animation: fadeInUp 0.3s ease-out;';
+      newCard.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 1.4rem;">📸</span>
+          <div>
+            <div style="font-weight: 700; font-size: 0.9rem;">Scanned Receipt #${scanCounter}.pdf</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);"><span style="color:#D32F2F">■</span> PDF • 420 KB</div>
+          </div>
+        </div>
+        <span style="font-size: 0.8rem; color: var(--success); font-weight: 700;">Synced</span>
+      `;
+      docList.prepend(newCard);
+      scanCounter++;
+      document.getElementById('sim-count').innerText = (3 + scanCounter) + ' Files';
+    }
+
+    function simulateLock() {
+      const pin = prompt('Enter 4-digit PIN to unlock VaultMaster (Try: 1234):');
+      if (pin === '1234') {
+        alert('✅ Biometric/PIN Verification Successful. Welcome back!');
+      } else if (pin !== null) {
+        alert('❌ Incorrect PIN. Security Vault Remains Locked.');
+      }
+    }
+  </script>
+
+</body>
+</html>

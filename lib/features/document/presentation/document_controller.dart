@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -77,26 +78,25 @@ class DocumentController extends _$DocumentController {
 
   Future<void> scanDocument({required String categoryId, required bool isVaulted}) async {
     try {
+      if (kIsWeb) {
+        await importFiles(categoryId: categoryId, isVaulted: isVaulted);
+        return;
+      }
       final List<String>? pictures = await CunningDocumentScanner.getPictures();
       if (pictures != null && pictures.isNotEmpty) {
         final repo = ref.read(documentRepositoryProvider);
-        
-        // Cunning Document Scanner returns cropped images (usually JPEGs)
-        // We will ingest each one.
         for (var i = 0; i < pictures.length; i++) {
           final file = File(pictures[i]);
-          final document = await repo.ingestFile(
+          await repo.ingestFile(
             file: file,
             name: 'Scanned Document ${i + 1}',
             categoryId: categoryId,
             isVaulted: isVaulted,
           );
-          // Trigger asynchronous upload via the smart queue manager
           ref.read(cloudinarySyncServiceProvider.notifier).triggerSync();
         }
       }
     } catch (e) {
-      // Handle scanner errors
       print('Error scanning document: $e');
       rethrow;
     }
@@ -108,19 +108,27 @@ class DocumentController extends _$DocumentController {
         allowMultiple: true,
         type: FileType.custom,
         allowedExtensions: ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'txt', 'jpg', 'png', 'jpeg'],
+        withData: kIsWeb,
       );
 
       if (result != null) {
         final repo = ref.read(documentRepositoryProvider);
         for (var file in result.files) {
-          if (file.path != null) {
-            final document = await repo.ingestFile(
+          if (kIsWeb && file.bytes != null) {
+            await repo.ingestWebFile(
+              bytes: file.bytes!,
+              name: file.name,
+              categoryId: categoryId,
+              isVaulted: isVaulted,
+            );
+            ref.read(cloudinarySyncServiceProvider.notifier).triggerSync();
+          } else if (file.path != null) {
+            await repo.ingestFile(
               file: File(file.path!),
               name: file.name,
               categoryId: categoryId,
               isVaulted: isVaulted,
             );
-            // Trigger asynchronous upload via the smart queue manager
             ref.read(cloudinarySyncServiceProvider.notifier).triggerSync();
           }
         }

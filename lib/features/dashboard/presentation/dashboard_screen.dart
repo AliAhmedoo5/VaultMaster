@@ -10,6 +10,7 @@ import '../../document/data/cloudinary_sync_service.dart';
 import '../data/category_service.dart';
 import 'package:open_filex/open_filex.dart';
 import 'dart:io';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class DashboardScreen extends ConsumerStatefulWidget {
   const DashboardScreen({super.key});
@@ -359,6 +360,15 @@ class _DocumentCard extends ConsumerWidget {
           onTap: () async {
             if (['pdf', 'png', 'jpg', 'jpeg'].contains(document.fileType)) {
               context.push('/document/${document.id}', extra: document);
+            } else if (kIsWeb) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(document.cloudUrl != null 
+                    ? 'Cloud URL: ${document.cloudUrl}' 
+                    : 'File is available in memory workspace.'),
+                  backgroundColor: AppTheme.primary,
+                ),
+              );
             } else {
               final result = await OpenFilex.open(document.localPath);
               if (result.type == ResultType.noAppToOpen) {

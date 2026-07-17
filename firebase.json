@@ -16,5 +16,14 @@
         "supportEmail": "aliarkhamnight2019@gmail.com"
       }
     }
+  },
+  "hosting": {
+    "public": "website",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "cleanUrls": true
   }
 }

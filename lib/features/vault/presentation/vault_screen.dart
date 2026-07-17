@@ -8,6 +8,7 @@ import '../../document/data/document_repository.dart';
 import '../data/vault_security_service.dart';
 import 'vault_controller.dart';
 import 'package:open_filex/open_filex.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class VaultScreen extends ConsumerStatefulWidget {
   const VaultScreen({super.key});
@@ -120,6 +121,15 @@ class _VaultDocumentCard extends ConsumerWidget {
         onTap: () async {
           if (['pdf', 'png', 'jpg', 'jpeg'].contains(document.fileType)) {
             context.push('/document/${document.id}', extra: document);
+          } else if (kIsWeb) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(document.cloudUrl != null 
+                  ? 'Cloud URL: ${document.cloudUrl}' 
+                  : 'Encrypted Vault file available in web memory.'),
+                backgroundColor: Colors.amber,
+              ),
+            );
           } else {
             final result = await OpenFilex.open(document.localPath);
             if (result.type == ResultType.noAppToOpen) {
@@ -129,7 +139,7 @@ class _VaultDocumentCard extends ConsumerWidget {
                     content: Text('No compatible app installed to open this file type.'),
                     backgroundColor: Colors.redAccent,
                   ),
-                );
+                 );
               }
             }
           }

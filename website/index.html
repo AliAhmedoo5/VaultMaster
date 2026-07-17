@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VaultMaster — Secure Offline-First Document Scanner</title>
+  <meta name="description" content="Scan, organize, and protect your important documents with military-grade security. VaultMaster works completely offline and syncs when you're ready.">
+  <meta property="og:title" content="VaultMaster — Secure Offline-First Document Scanner">
+  <meta property="og:description" content="Scan, organize, and protect your important documents with military-grade security. Works completely offline.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/hero-mockup-light.jpg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-text"><span class="brand-icon">🛡️</span>Vault<span>Master</span></a>
+    <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="comparison.html">Compare</a></li>
+      <li><a href="demo.html">Demo</a></li>
+      <li><a href="docs.html">Docs</a></li>
+      <li><a href="download.html" class="btn btn-primary">Download</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <main>
+    <section class="hero">
+      <div class="container animate-in">
+        <span class="badge">🛡️ Google ML Kit Scanner • Biometric Vault • Offline-First</span>
+        <h1 style="margin-top: 1rem;">Your Documents. Your Vault.</h1>
+        <p class="lead">Scan, organize, and protect your important documents with military-grade security. Works completely offline. Syncs when you're ready.</p>
+        <div class="hero-cta">
+          <a href="https://github.com/AliAhmedoo5/VaultMaster/releases/latest" class="btn btn-primary">Download APK</a>
+          <a href="features.html" class="btn btn-outline">See Features</a>
+        </div>
+        <div class="hero-image">
+          <img src="assets/hero-mockup-light.jpg" alt="VaultMaster Dashboard Mockup">
+        </div>
+      </div>
+    </section>
+
+    <!-- Why VaultMaster -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <h2>Why VaultMaster</h2>
+          <p class="lead">Optimized for productivity, high readability, and zero cognitive load.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card animate-in animate-delay-1">
+            <span class="card-icon icon-scan">📸</span>
+            <h3>Smart Scanner</h3>
+            <p>Real-time edge detection, perspective correction, and multi-page PDF compilation powered by Google ML Kit.</p>
+          </div>
+          <div class="card animate-in animate-delay-2">
+            <span class="card-icon icon-vault">🔒</span>
+            <h3>Security Vault</h3>
+            <p>PIN-protected and biometric encrypted storage using OS keychain that auto-locks the moment you background the app.</p>
+          </div>
+          <div class="card animate-in animate-delay-3">
+            <span class="card-icon icon-cloud">⚡</span>
+            <h3>Offline-First</h3>
+            <p>Full functionality without internet. Assets sync seamlessly to Cloudinary and Firebase Firestore when connectivity returns.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer-text">&copy; 2026 VaultMaster. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="https://github.com/AliAhmedoo5/VaultMaster" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/AliAhmedoo5/VaultMaster/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="https://github.com/AliAhmedoo5/VaultMaster/releases" target="_blank" rel="noopener">Releases</a>
+    </div>
+  </footer>
+
+</body>
+</html>

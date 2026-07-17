@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'dart:convert';
+import 'dart:typed_data';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
@@ -32,7 +34,10 @@ class DocumentRepository {
   CollectionReference get _userDocumentsRef => 
       _firestore.collection('users').doc(_userId).collection('documents');
 
+  static final Map<String, Uint8List> _webBytesCache = {};
+
   Future<String> _getAppDocumentsDir() async {
+    if (kIsWeb) return 'web_vault_documents';
     final directory = await getApplicationDocumentsDirectory();
     final documentsPath = p.join(directory.path, 'vault_documents');
     final dir = Directory(documentsPath);
@@ -40,6 +45,51 @@ class DocumentRepository {
       await dir.create(recursive: true);
     }
     return documentsPath;
+  }
+
+  Future<DocumentModel> ingestWebFile({
+    required Uint8List bytes,
+    required String name,
+    required String categoryId,
+    bool isVaulted = false,
+  }) async {
+    final fileHash = sha256.convert(bytes).toString();
+
+    try {
+      final duplicateQuery = await _userDocumentsRef
+          .where('fileHash', isEqualTo: fileHash)
+          .get(const GetOptions(source: Source.cache));
+          
+      if (duplicateQuery.docs.isNotEmpty) {
+        throw DuplicateDocumentException('Document already exists in your vault.');
+      }
+    } catch (e) {
+      if (e is DuplicateDocumentException) rethrow;
+    }
+
+    final docRef = _userDocumentsRef.doc();
+    final fileExtension = p.extension(name);
+    final fileType = fileExtension.replaceAll('.', '').toLowerCase();
+    
+    final localFilename = '${docRef.id}$fileExtension';
+    final secureLocalPath = 'web_cache/$localFilename';
+    _webBytesCache[docRef.id] = bytes;
+
+    final document = DocumentModel(
+      id: docRef.id,
+      userId: _userId,
+      name: name,
+      localPath: secureLocalPath,
+      createdAt: DateTime.now(),
+      categoryId: categoryId,
+      fileType: fileType.isEmpty ? 'pdf' : fileType,
+      fileSize: bytes.length,
+      isVaulted: isVaulted,
+      fileHash: fileHash,
+    );
+
+    await docRef.set(document.toFirestore());
+    return document;
   }
 
   Future<DocumentModel> ingestFile({
@@ -119,16 +169,16 @@ class DocumentRepository {
   }
 
   Future<void> deleteDocument(DocumentModel document) async {
-    // 1. Delete physical file locally
-    final file = File(document.localPath);
-    if (await file.exists()) {
-      await file.delete();
+    // 1. Delete physical file locally if not running on web memory
+    if (!kIsWeb && !document.localPath.startsWith('web_cache/')) {
+      final file = File(document.localPath);
+      if (await file.exists()) {
+        await file.delete();
+      }
     }
+    _webBytesCache.remove(document.id);
     
-    // 2. We don't delete from Cloudinary here (unsigned preset is upload only).
-    // The user owns their Cloudinary storage, so stale files can be bulk deleted there if needed.
-
-    // 3. Delete Firestore metadata
+    // 2. Delete Firestore metadata
     await _userDocumentsRef.doc(document.id).delete();
   }
 
@@ -139,15 +189,23 @@ class DocumentRepository {
   Future<void> syncToCloudinary(DocumentModel document) async {
     if (document.cloudUrl != null) return; // Already synced
 
-    final file = File(document.localPath);
-    if (!await file.exists()) return;
+    http.MultipartFile multipartFile;
+    if (kIsWeb || document.localPath.startsWith('web_cache/') || _webBytesCache.containsKey(document.id)) {
+      final bytes = _webBytesCache[document.id];
+      if (bytes == null) return;
+      multipartFile = http.MultipartFile.fromBytes('file', bytes, filename: document.name);
+    } else {
+      final file = File(document.localPath);
+      if (!await file.exists()) return;
+      multipartFile = await http.MultipartFile.fromPath('file', file.path);
+    }
 
     try {
       final uri = Uri.parse('https://api.cloudinary.com/v1_1/$_cloudinaryCloudName/upload');
       final request = http.MultipartRequest('POST', uri)
         ..fields['upload_preset'] = _cloudinaryUploadPreset
         ..fields['public_id'] = 'vaultmaster/$_userId/${document.id}'
-        ..files.add(await http.MultipartFile.fromPath('file', file.path));
+        ..files.add(multipartFile);
 
       // Add a strict 30-second timeout so a hanging request doesn't freeze the sync engine
       final response = await request.send().timeout(const Duration(seconds: 30));

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare — VaultMaster vs Alternatives</title>
+    <meta name="description" content="See how VaultMaster compares to Google Drive, CamScanner, and other document management tools. Free, offline-first, and open source.">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Compare — VaultMaster vs Alternatives">
+    <meta property="og:description" content="See how VaultMaster compares to Google Drive, CamScanner, and other document management tools.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vaultmaster.app/comparison.html">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ── Navbar ─────────────────────────────────────────── -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-text"><span class="brand-icon">🛡️</span>Vault<span>Master</span></a>
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="comparison.html" class="active">Compare</a></li>
+            <li><a href="demo.html">Demo</a></li>
+            <li><a href="docs.html">Docs</a></li>
+            <li><a href="download.html" class="btn btn-primary">Download</a></li>
+        </ul>
+    </nav>
+
+    <!-- ── Hero ──────────────────────────────────────────── -->
+    <main>
+        <section class="hero">
+            <div class="container">
+                <span class="badge animate-in">Side-by-Side Comparison</span>
+                <h1 class="animate-in animate-delay-1">How VaultMaster compares.</h1>
+                <p class="lead animate-in animate-delay-2">See why VaultMaster is the smarter choice for document management.</p>
+            </div>
+        </section>
+
+        <!-- ── Comparison Table ──────────────────────────── -->
+        <section>
+            <div class="container">
+                <div style="overflow-x: auto;">
+                    <table class="comparison-table animate-in animate-delay-3">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Google Drive</th>
+                                <th>CamScanner</th>
+                                <th class="vm-column-header">VaultMaster</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Offline-First</td>
+                                <td><span class="cross-red">✗</span> Requires internet</td>
+                                <td><span class="text-muted">Partial</span></td>
+                                <td class="vm-column"><span class="check-gold">✓</span> Full offline</td>
+                            </tr>
+                            <tr>
+                                <td>Document Scanning</td>
+                                <td><span class="cross-red">✗</span> Not available</td>
+                                <td><span class="check-green">✓</span> Available</td>
+                                <td class="vm-column"><span class="check-gold">✓</span> Edge detection + PDF</td>
+                            </tr>
+                            <tr>
+                                <td>Security Vault (PIN)</td>
+                                <td><span class="cross-red">✗</span> Not available</td>
+                                <td><span class="text-muted">Premium only</span></td>
+                                <td class="vm-column"><span class="check-gold">✓</span> Free, auto-lock</td>
+                            </tr>
+                            <tr>
+                                <td>Monthly Cost</td>
+                                <td>Free (15GB cap)</td>
+                                <td>$4.99/month</td>
+                                <td class="vm-column"><span class="check-gold">✓</span> 100% Free</td>
+                            </tr>
+                            <tr>
+                                <td>Cloud Backup</td>
+                                <td><span class="check-green">✓</span> Yes</td>
+                                <td><span class="check-green">✓</span> Yes</td>
+                                <td class="vm-column"><span class="check-gold">✓</span> Cloudinary sync</td>
+                            </tr>
+                            <tr>
+                                <td>Open Source</td>
+                                <td><span class="cross-red">✗</span> No</td>
+                                <td><span class="cross-red">✗</span> No</td>
+                                <td class="vm-column"><span class="check-gold">✓</span> MIT License</td>
+                            </tr>
+                            <tr>
+                                <td>No Ads</td>
+                                <td><span class="check-green">✓</span> Yes</td>
+                                <td><span class="cross-red">✗</span> Ad-supported</td>
+                                <td class="vm-column"><span class="check-gold">✓</span> Zero ads</td>
+                            </tr>
+                            <tr>
+                                <td>Native Share</td>
+                                <td><span class="check-green">✓</span> Yes</td>
+                                <td><span class="check-green">✓</span> Yes</td>
+                                <td class="vm-column"><span class="check-gold">✓</span> Full OS integration</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CTA Section ───────────────────────────────── -->
+        <section style="text-align: center;">
+            <div class="container animate-in animate-delay-4">
+                <h2>Ready to switch?</h2>
+                <p class="lead" style="margin: 1rem auto 2rem;">Join thousands of users who manage their documents smarter.</p>
+                <a href="download.html" class="btn btn-primary">Download VaultMaster</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ── Footer ────────────────────────────────────────── -->
+    <footer class="footer">
+        <p class="footer-text">&copy; 2026 VaultMaster. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="https://github.com/AliAhmedoo5/VaultMaster" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://github.com/AliAhmedoo5/VaultMaster/issues" target="_blank" rel="noopener">Issues</a>
+            <a href="https://github.com/AliAhmedoo5/VaultMaster/releases" target="_blank" rel="noopener">Releases</a>
+        </div>
+    </footer>
+
+</body>
+</html>

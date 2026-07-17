@@ -41,35 +41,12 @@
     <section style="padding-top: 0;">
       <div class="container demo-container animate-in animate-delay-1">
         
-        <!-- Mode Switch Tabs -->
-        <div class="demo-tabs">
-          <button class="demo-tab-btn active" id="tab-sandbox" onclick="switchDemoMode('sandbox')">🎨 Interactive Sandbox (HTML/JS)</button>
-          <button class="demo-tab-btn" id="tab-flutter" onclick="switchDemoMode('flutter')">⚡ Full Flutter Web Canvas (CI/CD)</button>
-        </div>
-
         <!-- Smartphone Mockup Wrapper -->
         <div class="phone-mockup-wrapper">
           <div class="phone-frame">
             <div class="phone-notch"></div>
             
-            <!-- Flutter Web App Iframe (Primary Interactive Sandbox with mock Google Login) -->
-            <iframe src="app/index.html" id="flutter-iframe" title="VaultMaster Flutter Web App" class="app-iframe" style="display: block;" allow="camera; clipboard-read; clipboard-write; fullscreen"></iframe>
-
-            <!-- Flutter Fallback Card (If CI build is still compiling) -->
-            <div id="flutter-fallback" style="display: none; padding: 48px 20px 20px; height: 100%; overflow-y: auto; background: var(--bg-primary); text-align: center;">
-              <div style="margin-top: 2rem;">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
-                <h3 style="margin-bottom: 0.5rem; color: var(--text-main);">Building App Sandbox...</h3>
-                <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 1.5rem; max-width: 260px; margin-left: auto; margin-right: auto;">
-                  GitHub Actions is compiling the live WebAssembly app bundle right now. Or switch to the Quick HTML Overview below while it deploys!
-                </p>
-                <button class="btn btn-gold" onclick="switchDemoMode('sandbox')" style="padding: 10px 20px; font-size: 0.85rem; width: auto; margin: 0 auto;">
-                  ⚡ View Quick HTML Overview →
-                </button>
-              </div>
-            </div>
-
-            <!-- Interactive Sandbox Simulation (Default Active View - Pixel-to-Pixel Flutter Material 3 Clone) -->
+            <!-- Interactive Sandbox Simulation (Pixel-to-Pixel Flutter Material 3 Clone) -->
             <div id="sandbox-view" style="height: 100%; position: relative; overflow: hidden; background: var(--flutter-bg); display: block;">
               
               <!-- TOAST FLOATING SNACKBAR (`SnackBarBehavior.floating`) -->
@@ -543,40 +520,6 @@
   </footer>
 
   <script>
-    async function switchDemoMode(mode) {
-      const flutterTab = document.getElementById('tab-flutter');
-      const sandboxTab = document.getElementById('tab-sandbox');
-      const flutterIframe = document.getElementById('flutter-iframe');
-      const sandboxView = document.getElementById('sandbox-view');
-      const flutterFallback = document.getElementById('flutter-fallback');
-
-      if (mode === 'flutter') {
-        flutterTab.classList.add('active');
-        sandboxTab.classList.remove('active');
-        sandboxView.style.display = 'none';
-
-        try {
-          const resp = await fetch('app/index.html', { method: 'HEAD' });
-          if (resp.ok) {
-            flutterIframe.style.display = 'block';
-            if (flutterFallback) flutterFallback.style.display = 'none';
-          } else {
-            flutterIframe.style.display = 'none';
-            if (flutterFallback) flutterFallback.style.display = 'block';
-          }
-        } catch (e) {
-          flutterIframe.style.display = 'none';
-          if (flutterFallback) flutterFallback.style.display = 'block';
-        }
-      } else {
-        sandboxTab.classList.add('active');
-        flutterTab.classList.remove('active');
-        flutterIframe.style.display = 'none';
-        if (flutterFallback) flutterFallback.style.display = 'none';
-        sandboxView.style.display = 'block';
-      }
-    }
-
     function runSplashScreen(nextScreenId, duration = 2200, statusText = 'Encrypted Storage • ML Kit') {
       const splashScreen = document.getElementById('flutter-screen-splash');
       const contentBox = document.getElementById('splash-content-box');
@@ -641,9 +584,8 @@
       }, 150);
     }
 
-    // Auto-check and initialize sandbox view on page load showing WelcomeScreen
     window.addEventListener('DOMContentLoaded', () => {
-      switchDemoMode('sandbox');
+      // Sandbox view is active by default showing WelcomeScreen
     });
 
     function showSnackbar(message) {

@@ -6,18 +6,18 @@
   <title>Live Interactive Demo — VaultMaster Smartphone Sandbox</title>
   <meta name="description" content="Try out VaultMaster right inside your browser in our interactive smartphone screen simulation. Experience rotating safe dial animations, Google auth splash transitions, and encrypted document storage without installing an APK.">
   <meta name="keywords" content="VaultMaster demo, interactive web sandbox, flutter demo, online document scanner simulation, offline vault test">
-  <link rel="canonical" href="https://vaultmaster-pds.web.app/demo.html">
+  <link rel="canonical" href="https://vaultmasterapp.web.app/demo.html">
   <!-- Open Graph -->
   <meta property="og:title" content="Live Interactive Demo — VaultMaster Smartphone Sandbox">
   <meta property="og:description" content="Try out VaultMaster live inside your browser right now in our pixel-to-pixel smartphone simulation.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://vaultmaster-pds.web.app/demo.html">
-  <meta property="og:image" content="https://vaultmaster-pds.web.app/assets/hero-mockup-light.jpg">
+  <meta property="og:url" content="https://vaultmasterapp.web.app/demo.html">
+  <meta property="og:image" content="https://vaultmasterapp.web.app/assets/hero-mockup-light.jpg">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Live Interactive Demo — VaultMaster Smartphone Sandbox">
   <meta name="twitter:description" content="Military-grade offline document scanner interactive smartphone browser demo.">
-  <meta name="twitter:image" content="https://vaultmaster-pds.web.app/assets/hero-mockup-light.jpg">
+  <meta name="twitter:image" content="https://vaultmasterapp.web.app/assets/hero-mockup-light.jpg">
   <!-- Icons -->
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/icon.png">
@@ -46,15 +46,14 @@
 
   <!-- Navbar -->
   <nav class="navbar">
-    <a href="index.html" class="brand-text"><span class="brand-icon">🛡️</span>Vault<span>Master</span></a>
+    <a href="index.html" class="brand-text"><img src="assets/nav-icon.png" alt="VaultMaster" class="brand-icon">Vault<span>Master</span></a>
     <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="features.html">Features</a></li>
       <li><a href="comparison.html">Compare</a></li>
       <li><a href="demo.html" class="active">Demo</a></li>
-      <li><a href="docs.html">Docs</a></li>
-      <li><a href="download.html" class="btn btn-primary">Download</a></li>
+      <li><a href="mailto:aliahmed.work0@gmail.com?subject=VaultMaster%20APK%20Request" onclick="openAPKModal(event)" class="btn btn-primary" title="Contact via Email or LinkedIn to request the APK">Download APK</a></li>
     </ul>
   </nav>
 
@@ -63,7 +62,7 @@
       <div class="container animate-in">
         <span class="badge">🛡️ Live Interactive Workspace</span>
         <h1 style="margin-top: 1rem;">Experience VaultMaster Live.</h1>
-        <p class="lead">Test our offline-first document scanner and encrypted vault right from your browser. Switch between the full Flutter Web canvas build and the instant interactive simulation.</p>
+        <p class="lead">Test our offline-first document scanner and encrypted vault right from your browser using our interactive simulation. <em>Note: The actual mobile APK will look and feel slightly different from this interactive demo, but in a good, highly polished native way!</em></p>
       </div>
     </section>
 
@@ -71,6 +70,41 @@
     <section style="padding-top: 0;">
       <div class="container demo-container animate-in animate-delay-1">
         
+        <!-- ── UX PSYCHOLOGY CONTROL PANEL (Endowed Progress & IKEA Co-Creation) ── -->
+        <div class="ux-psych-panel" style="max-width: 480px; margin: 0 auto 2rem; padding: 1.25rem; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; text-align: left; box-shadow: var(--card-shadow);">
+          <!-- 1. Goal Gradient Effect (Endowed Progress Guided Tour) -->
+          <div style="margin-bottom: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.05em;">✨ Interactive Setup & Feature Guide</span>
+              <span id="endowed-progress-text" style="font-size: 0.82rem; font-weight: 800; color: #4CAF50;">25% Complete (1/4 Steps)</span>
+            </div>
+            <div style="background: rgba(0,0,0,0.08); height: 8px; border-radius: 999px; overflow: hidden; margin-bottom: 10px;">
+              <div id="endowed-progress-bar" style="background: linear-gradient(90deg, #FFC107, #4CAF50); width: 25%; height: 100%; border-radius: 999px; transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);"></div>
+            </div>
+            <div id="setup-steps-list" style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.75;">
+              <div id="guide-step-1" style="font-weight: 600; color: var(--accent-navy);">👉 <span style="font-weight: 700;">Step 1: Unlock Vault</span> — Click "GET STARTED" and sign in inside the emulator below.</div>
+              <div id="guide-step-2" style="color: var(--text-secondary); opacity: 0.8;">⏳ <span style="font-weight: 700;">Step 2: Filter & Search Archive</span> — Try searching or clicking category chips below.</div>
+              <div id="guide-step-3" style="color: var(--text-secondary); opacity: 0.8;">⏳ <span style="font-weight: 700;">Step 3: Encrypt New Record</span> — Click the "+ Add" pill or "+" FAB button inside the emulator.</div>
+              <div id="guide-step-4" style="color: var(--text-secondary); opacity: 0.8;">⏳ <span style="font-weight: 700;">Step 4: Confirm Document Ingest</span> — Complete adding or scanning a document to lock into keystore.</div>
+            </div>
+          </div>
+
+          <!-- 2. Interactive Zoom Controls -->
+          <div style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px;">
+              <div style="font-size: 0.82rem; font-weight: 700; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px;">
+                <span>🔍</span> Emulator Zoom Level: <span id="zoom-val" style="color: var(--accent-navy); font-family: monospace; font-size: 0.95rem;">100%</span>
+              </div>
+              <div style="display: flex; gap: 6px; align-items: center;">
+                <button onclick="changeZoom(-0.1)" class="btn btn-outline" style="padding: 6px 14px; font-size: 0.95rem; font-weight: 800; border-radius: 8px; cursor: pointer; line-height: 1;" title="Zoom Out">−</button>
+                <button onclick="resetZoom()" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.78rem; font-weight: 700; border-radius: 8px; cursor: pointer; line-height: 1;">Reset</button>
+                <button onclick="changeZoom(0.1)" class="btn btn-outline" style="padding: 6px 14px; font-size: 0.95rem; font-weight: 800; border-radius: 8px; cursor: pointer; line-height: 1;" title="Zoom In">+</button>
+              </div>
+            </div>
+            <input type="range" id="zoom-slider" min="0.6" max="1.4" step="0.05" value="1.0" oninput="applyZoomSlider(this.value)" style="width: 100%; accent-color: var(--accent-navy); cursor: pointer;">
+          </div>
+        </div>
+
         <!-- Smartphone Mockup Wrapper -->
         <div class="phone-mockup-wrapper">
           <div class="phone-frame">
@@ -118,10 +152,10 @@
                 </div>
 
                 <div>
-                  <h2 style="font-size: 25px; font-weight: 800; color: #1A237E; text-align: center; line-height: 1.25; margin: 0 0 12px 0; letter-spacing: -0.02em;">A pocket filing cabinet built for security.</h2>
-                  <p style="font-size: 14.5px; color: #546E7A; text-align: center; line-height: 1.45; margin: 0 0 28px 0;">Smart scanning, biometric protection, and offline-first encryption. Your confidential documents, exactly where they belong.</p>
+                  <h2 style="font-size: 25px; font-weight: 800; color: var(--flutter-primary); text-align: center; line-height: 1.25; margin: 0 0 12px 0; letter-spacing: -0.02em;">A pocket filing cabinet built for security.</h2>
+                  <p style="font-size: 14.5px; color: #546E7A; text-align: center; line-height: 1.45; margin: 0 0 28px 0;">Clean document scanning, PIN passcode protection, and offline-first encryption. Your confidential documents, exactly where they belong.</p>
                   
-                  <button onclick="transitionToLogin()" class="flutter-btn-elevated" style="background: #1A237E; color: #FFFFFF; font-weight: 700; width: 100%; padding: 16px; border-radius: 14px; border: none; font-size: 15px; cursor: pointer; box-shadow: 0 4px 12px rgba(26, 35, 126, 0.25);">
+                  <button onclick="transitionToLogin()" class="flutter-btn-elevated" style="background: var(--flutter-primary); color: #FFFFFF; font-weight: 700; width: 100%; padding: 16px; border-radius: 14px; border: none; font-size: 15px; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                     GET STARTED
                   </button>
                   <div style="text-align: center; font-size: 11px; font-weight: 600; color: #90A4AE; margin-top: 14px;">v1.0 • Secure Sync Enabled</div>
@@ -135,7 +169,7 @@
                     <img src="assets/icon.png" alt="VaultMaster Icon" style="width: 100%; height: 100%; object-fit: cover; border-radius: 24px;">
                   </div>
                   <div class="splash-title">VaultMaster</div>
-                  <div class="splash-subtitle" id="splash-status-text">Encrypted Storage • ML Kit</div>
+                  <div class="splash-subtitle" id="splash-status-text">Encrypted Storage • PIN Vault</div>
                 </div>
               </div>
 
@@ -275,12 +309,12 @@
                     </div>
                   </div>
 
-                  <div class="flutter-doc-card doc-item" data-cat="IDs" data-name="Passport Biometric Scan.png">
+                  <div class="flutter-doc-card doc-item" data-cat="IDs" data-name="Passport ID Card Scan.png">
                     <div class="flutter-doc-icon" style="background: rgba(245, 124, 0, 0.1); color: #F57C00;">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
                     </div>
                     <div style="flex: 1; overflow: hidden;">
-                      <div style="font-weight: 600; font-size: 15px; color: var(--flutter-on-surface); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Passport Biometric Scan.png</div>
+                      <div style="font-weight: 600; font-size: 15px; color: var(--flutter-on-surface); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Passport ID Card Scan.png</div>
                       <div style="font-size: 12px; color: var(--flutter-on-surface-variant); margin-top: 3px;">2026-07-16 • 4.1 MB</div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
@@ -417,8 +451,8 @@
                   <button onclick="closeCameraModal()" style="background: transparent; border: none; color: #FFFFFF; cursor: pointer; padding: 4px;">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                   </button>
-                  <span style="color: #FFFFFF; font-weight: 600; font-size: 15px;">Smart Edge Detection</span>
-                  <span style="background: rgba(0, 229, 255, 0.2); color: #00E5FF; padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: 700;">ML Kit</span>
+                  <span style="color: #FFFFFF; font-weight: 600; font-size: 15px;">Document Camera Scanner</span>
+                  <span style="background: rgba(0, 229, 255, 0.2); color: #00E5FF; padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: 700;">Scan</span>
                 </div>
 
                 <div class="camera-viewfinder">
@@ -509,7 +543,7 @@
                     witch collapse practice feed shame open despair creek road again ice crown
                   </div>
                   <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 11px; color: #4CAF50;">✓ Verified Biometric Access</span>
+                    <span style="font-size: 11px; color: #4CAF50;">✓ Verified PIN Access</span>
                     <button onclick="closeOverlay()" style="background: var(--flutter-primary); border: none; padding: 8px 18px; border-radius: 8px; color: #FFFFFF; font-weight: 600; cursor: pointer;">Close</button>
                   </div>
                 </div>
@@ -522,16 +556,16 @@
         <!-- Info Cards Below Phone -->
         <div class="demo-info-grid">
           <div class="card">
-            <h4>⚡ Cloud CI/CD Build</h4>
-            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0;">The Flutter Web canvas is compiled directly from our `main` branch via GitHub Actions without consuming any local machine storage.</p>
+            <h4>📱 Live Interactive Demo</h4>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0;">Explore the core workflow and security features right inside this browser emulator. <strong>Note: The installed mobile app will look and feel slightly different from this demo, but in a good, highly polished native way!</strong></p>
           </div>
           <div class="card">
-            <h4>🔒 Offline & Biometrics</h4>
-            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0;">On mobile devices, VaultMaster leverages Android Keystore / iOS Keychain for military-grade biometric authentication and offline caching.</p>
+            <h4>🔒 Passcode Keystore Security</h4>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0;">On mobile devices, VaultMaster leverages Android Keystore / iOS Keychain for military-grade PIN passcode authentication and offline storage.</p>
           </div>
           <div class="card">
-            <h4>📸 Smart ML Kit</h4>
-            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0;">Our camera scanner automatically detects physical page boundaries, adjusts tilt angles, and compiles clean multi-page PDF documents.</p>
+            <h4>📸 Document Scanner</h4>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0;">Our camera scanner captures high-clarity physical documents, adjusts boundaries, and compiles clean multi-page PDF files right on your device.</p>
           </div>
         </div>
 
@@ -541,16 +575,16 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <p class="footer-text">&copy; 2026 VaultMaster. All rights reserved.</p>
+    <p class="footer-text">&copy; 2026 VaultMaster. All rights reserved. • Direct Support: <a href="mailto:aliahmed.work0@gmail.com" style="color: inherit; text-decoration: underline;">aliahmed.work0@gmail.com</a></p>
     <div class="footer-links">
-      <a href="https://github.com/AliAhmedoo5/VaultMaster" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://github.com/AliAhmedoo5/VaultMaster/issues" target="_blank" rel="noopener">Issues</a>
-      <a href="https://github.com/AliAhmedoo5/VaultMaster/releases" target="_blank" rel="noopener">Releases</a>
+      <a href="https://github.com/AliAhmedoo5" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/aliahmed0516" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:aliahmed.work0@gmail.com">Email Me</a>
     </div>
   </footer>
 
   <script>
-    function runSplashScreen(nextScreenId, duration = 2200, statusText = 'Encrypted Storage • ML Kit') {
+    function runSplashScreen(nextScreenId, duration = 2200, statusText = 'Encrypted Storage • PIN Vault') {
       const splashScreen = document.getElementById('flutter-screen-splash');
       const contentBox = document.getElementById('splash-content-box');
       const statusEl = document.getElementById('splash-status-text');
@@ -588,6 +622,149 @@
       }, duration);
     }
 
+    let currentZoom = 1.0;
+    function changeZoom(delta) {
+      currentZoom = Math.max(0.6, Math.min(1.4, Math.round((currentZoom + delta) * 100) / 100));
+      applyZoom(currentZoom);
+    }
+    function resetZoom() {
+      currentZoom = 1.0;
+      applyZoom(currentZoom);
+    }
+    function applyZoomSlider(val) {
+      currentZoom = parseFloat(val);
+      applyZoom(currentZoom);
+    }
+    function applyZoom(zoom) {
+      const frame = document.querySelector('.phone-frame');
+      const wrapper = document.querySelector('.phone-mockup-wrapper');
+      const valEl = document.getElementById('zoom-val');
+      const slider = document.getElementById('zoom-slider');
+      if (valEl) valEl.textContent = Math.round(zoom * 100) + '%';
+      if (slider && parseFloat(slider.value) !== zoom) slider.value = zoom;
+      if (frame) {
+        frame.style.transform = `scale(${zoom})`;
+        frame.style.transformOrigin = 'top left';
+        frame.style.transition = 'transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
+      }
+      if (wrapper) {
+        wrapper.style.height = (780 * zoom) + 'px';
+        wrapper.style.width = (380 * zoom) + 'px';
+        wrapper.style.minHeight = (780 * zoom) + 'px';
+        wrapper.style.minWidth = (380 * zoom) + 'px';
+        wrapper.style.display = 'block';
+        wrapper.style.margin = '0 auto';
+        wrapper.style.transition = 'height 0.25s cubic-bezier(0.4, 0, 0.2, 1), width 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
+      }
+      showSnackbar(`🔍 Emulator Zoom: ${Math.round(zoom * 100)}%`);
+    }
+
+
+    let currentSetupStep = 1;
+    function updateSetupProgress(stepNum) {
+      if (stepNum <= currentSetupStep && stepNum !== 1) return;
+      currentSetupStep = Math.max(currentSetupStep, stepNum);
+      const bar = document.getElementById('endowed-progress-bar');
+      const txt = document.getElementById('endowed-progress-text');
+      const s1 = document.getElementById('guide-step-1');
+      const s2 = document.getElementById('guide-step-2');
+      const s3 = document.getElementById('guide-step-3');
+      const s4 = document.getElementById('guide-step-4');
+
+      if (stepNum === 1) {
+        currentSetupStep = 1;
+        if (bar) bar.style.width = '25%';
+        if (txt) {
+          txt.innerText = '25% Complete (1/4 Steps)';
+          txt.style.color = '#4CAF50';
+        }
+        if (s1) {
+          s1.innerHTML = '👉 <span style="font-weight: 700;">Step 1: Unlock Vault</span> — Click "GET STARTED" and sign in inside the emulator below.';
+          s1.style.cssText = 'font-weight: 600; color: var(--accent-navy);';
+        }
+        if (s2) {
+          s2.innerHTML = '⏳ <span style="font-weight: 700;">Step 2: Filter & Search Archive</span> — Try searching or clicking category chips below.';
+          s2.style.cssText = 'color: var(--text-secondary); opacity: 0.8;';
+        }
+        if (s3) {
+          s3.innerHTML = '⏳ <span style="font-weight: 700;">Step 3: Encrypt New Record</span> — Click the "+ Add" pill or "+" FAB button inside the emulator.';
+          s3.style.cssText = 'color: var(--text-secondary); opacity: 0.8;';
+        }
+        if (s4) {
+          s4.innerHTML = '⏳ <span style="font-weight: 700;">Step 4: Confirm Document Ingest</span> — Complete adding or scanning a document to lock into keystore.';
+          s4.style.cssText = 'color: var(--text-secondary); opacity: 0.8;';
+        }
+      } else if (stepNum === 2) {
+        if (bar) bar.style.width = '50%';
+        if (txt) txt.innerText = '50% Complete (2/4 Steps)';
+        if (s1) {
+          s1.innerHTML = '<span style="color: #4CAF50; font-weight: 700;">✓ Step 1:</span> PIN Passcode Keystore Vault Unlocked & Signed In!';
+          s1.style.cssText = 'color: #4CAF50; font-weight: 600;';
+        }
+        if (s2) {
+          s2.innerHTML = '👉 <span style="font-weight: 700;">Step 2: Filter & Search Archive</span> — Click category chips (\'Receipts\', \'IDs\') or search above.';
+          s2.style.cssText = 'font-weight: 700; color: var(--accent-navy);';
+        }
+      } else if (stepNum === 3) {
+        if (bar) bar.style.width = '75%';
+        if (txt) txt.innerText = '75% Complete (3/4 Steps)';
+        if (s1) {
+          s1.innerHTML = '<span style="color: #4CAF50; font-weight: 700;">✓ Step 1:</span> PIN Passcode Keystore Vault Unlocked & Signed In!';
+          s1.style.cssText = 'color: #4CAF50; font-weight: 600;';
+        }
+        if (s2) {
+          s2.innerHTML = '<span style="color: #4CAF50; font-weight: 700;">✓ Step 2:</span> Instant Local Search & Category Filtering Verified!';
+          s2.style.cssText = 'color: #4CAF50; font-weight: 600;';
+        }
+        if (s3) {
+          s3.innerHTML = '👉 <span style="font-weight: 700;">Step 3: Encrypt New Record</span> — Click "+ Add" chip or "+" FAB button inside emulator.';
+          s3.style.cssText = 'font-weight: 700; color: var(--accent-navy);';
+        }
+      } else if (stepNum === 4) {
+        if (bar) bar.style.width = '90%';
+        if (txt) txt.innerText = '90% Complete (3/4 Steps)';
+        if (s1) {
+          s1.innerHTML = '<span style="color: #4CAF50; font-weight: 700;">✓ Step 1:</span> PIN Passcode Keystore Vault Unlocked & Signed In!';
+          s1.style.cssText = 'color: #4CAF50; font-weight: 600;';
+        }
+        if (s2) {
+          s2.innerHTML = '<span style="color: #4CAF50; font-weight: 700;">✓ Step 2:</span> Instant Local Search & Category Filtering Verified!';
+          s2.style.cssText = 'color: #4CAF50; font-weight: 600;';
+        }
+        if (s3) {
+          s3.innerHTML = '<span style="color: #4CAF50; font-weight: 700;">✓ Step 3:</span> New Document Creation & Scanner Dialog Activated!';
+          s3.style.cssText = 'color: #4CAF50; font-weight: 600;';
+        }
+        if (s4) {
+          s4.innerHTML = '👉 <span style="font-weight: 700;">Step 4: Confirm Document Ingest</span> — Click "SAVE TO NEXUS ARCHIVE" or confirm camera scan.';
+          s4.style.cssText = 'font-weight: 700; color: var(--accent-navy);';
+        }
+      } else if (stepNum === 5) {
+        if (bar) bar.style.width = '100%';
+        if (txt) {
+          txt.innerText = '100% Complete 🎉 (All Features Mastered!)';
+          txt.style.color = '#4CAF50';
+        }
+        if (s1) {
+          s1.innerHTML = '<span style="color: #4CAF50; font-weight: 700;">✓ Step 1:</span> PIN Passcode Keystore Vault Unlocked & Signed In!';
+          s1.style.cssText = 'color: #4CAF50; font-weight: 600;';
+        }
+        if (s2) {
+          s2.innerHTML = '<span style="color: #4CAF50; font-weight: 700;">✓ Step 2:</span> Instant Local Search & Category Filtering Verified!';
+          s2.style.cssText = 'color: #4CAF50; font-weight: 600;';
+        }
+        if (s3) {
+          s3.innerHTML = '<span style="color: #4CAF50; font-weight: 700;">✓ Step 3:</span> New Document Creation & Scanner Dialog Activated!';
+          s3.style.cssText = 'color: #4CAF50; font-weight: 600;';
+        }
+        if (s4) {
+          s4.innerHTML = '<span style="color: #4CAF50; font-weight: 700;">✓ Step 4:</span> Document Ingest & Zero-Knowledge Keystore Storage Complete!';
+          s4.style.cssText = 'color: #4CAF50; font-weight: 600;';
+        }
+        showSnackbar('🏆 All VaultMaster features unlocked and mastered!');
+      }
+    }
+
     function transitionToLogin() {
       const scrWelcome = document.getElementById('flutter-screen-welcome');
       const scrLogin = document.getElementById('flutter-screen-login');
@@ -599,6 +776,8 @@
         scrLogin.classList.remove('hidden');
         scrLogin.classList.add('active');
       }, 150);
+
+      updateSetupProgress(1);
     }
 
     function transitionToWelcome() {
@@ -612,6 +791,7 @@
         scrWelcome.classList.remove('hidden');
         scrWelcome.classList.add('active');
       }, 150);
+      updateSetupProgress(1);
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -636,6 +816,7 @@
         runSplashScreen('flutter-screen-dashboard', 2200, 'Syncing Nexus Archive...');
         setTimeout(() => {
           showSnackbar('OK you are sign in');
+          updateSetupProgress(2);
         }, 2300);
       }, 500);
     }
@@ -643,6 +824,7 @@
     function logoutSandbox() {
       showSnackbar('Signed out of Nexus Archive.');
       runSplashScreen('flutter-screen-welcome', 1600, 'Logging out...');
+      updateSetupProgress(1);
     }
 
     let currentCat = 'All';
@@ -651,10 +833,12 @@
       document.querySelectorAll('.flutter-chip').forEach(c => c.classList.remove('selected'));
       if (chipEl) chipEl.classList.add('selected');
       filterDocuments();
+      updateSetupProgress(3);
     }
 
     function filterDocuments() {
       const query = document.getElementById('flutter-search').value.toLowerCase();
+      if (query && query.length > 0) updateSetupProgress(3);
       document.querySelectorAll('#flutter-doc-list .doc-item').forEach(item => {
         const cat = item.getAttribute('data-cat');
         const name = item.getAttribute('data-name').toLowerCase();
@@ -713,9 +897,11 @@
                 document.getElementById('flutter-screen-vault').classList.remove('hidden');
                 document.getElementById('flutter-screen-vault').classList.add('active');
                 showSnackbar('🔓 Security Vault Unlocked (OS Keychain verified)');
+                updateSetupProgress(4);
               } else if (pinMode === 'doc') {
                 openDocViewerModal(pendingDocName, pendingDocContent);
-                showSnackbar('🔓 Biometric / PIN Verification Successful');
+                showSnackbar('🔓 PIN Passcode Verification Successful');
+                updateSetupProgress(4);
               }
             }, 250);
           }, 150);
@@ -786,6 +972,7 @@
     function simulateScan() {
       document.getElementById('flutter-overlay').classList.add('show');
       document.getElementById('flutter-ingestion-sheet').style.display = 'block';
+      updateSetupProgress(4);
     }
 
     function openIngestionDialog(isScan) {
@@ -795,8 +982,10 @@
       if (isScan) {
         document.getElementById('flutter-overlay').classList.remove('show');
         document.getElementById('flutter-camera-modal').classList.add('show');
+        updateSetupProgress(4);
       } else {
         document.getElementById('flutter-ingestion-dialog').style.display = 'block';
+        updateSetupProgress(4);
       }
     }
 
@@ -872,11 +1061,17 @@
       document.getElementById('ingest-vaulted').checked = false;
       closeOverlay();
       filterDocuments();
+      if (lastIngestedWasScan) {
+        updateSetupProgress(5);
+      } else {
+        updateSetupProgress(4);
+      }
     }
 
     function showAddCategory() {
       document.getElementById('flutter-overlay').classList.add('show');
       document.getElementById('flutter-add-cat-dialog').style.display = 'block';
+      updateSetupProgress(4);
       setTimeout(() => {
         const inp = document.getElementById('new-cat-input');
         if (inp) inp.focus();
@@ -906,5 +1101,70 @@
     }
   </script>
 
+  <!-- Universal APK & Contact Request Modal -->
+  <div id="apk-request-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <button onclick="closeAPKModal()" style="position: absolute; top: 1.25rem; right: 1.25rem; background: transparent; border: none; font-size: 1.6rem; cursor: pointer; color: var(--text-secondary);">×</button>
+      
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem;">
+        <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(255, 193, 7, 0.18); display: flex; align-items: center; justify-content: center; font-size: 1.6rem;">🛡️</div>
+        <div>
+          <h3 style="margin: 0; font-size: 1.35rem; font-weight: 800; color: var(--text-primary);">Get VaultMaster APK</h3>
+          <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary);">Direct verification & custom device builds</p>
+        </div>
+      </div>
+
+      <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">To ensure you receive the genuine, cryptographically signed APK tailored for your exact device architecture (arm64-v8a / x86_64), please request it directly from the lead architect via <strong>LinkedIn</strong> or <strong>Email</strong>:</p>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;">
+        <a href="https://www.linkedin.com/in/aliahmed0516" target="_blank" rel="noopener" class="btn btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px; border-radius: 14px; font-weight: 700; font-size: 1.05rem;">
+          <span>💼</span> Message on LinkedIn (@aliahmed0516)
+        </a>
+
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 14px; padding: 1.2rem;">
+          <div style="font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">✉️ Direct Email Request</div>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+            <span style="font-family: monospace; font-size: 0.95rem; font-weight: 700; color: var(--text-primary);">aliahmed.work0@gmail.com</span>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button onclick="copyAPKEmail(this)" class="btn btn-outline" style="padding: 8px 14px; font-size: 0.82rem; border-radius: 8px; cursor: pointer;">📋 Copy</button>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aliahmed.work0@gmail.com&su=VaultMaster%20APK%20Request&body=Hi%20Ali%2C%20I%20would%20like%20to%20request%20the%20VaultMaster%20APK." target="_blank" rel="noopener" class="btn btn-outline" style="padding: 8px 14px; font-size: 0.82rem; border-radius: 8px;">↗ Gmail Web</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center;">
+        <button onclick="closeAPKModal()" class="btn btn-outline" style="width: 100%; border: none; color: var(--text-secondary); cursor: pointer;">Maybe Later</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  function openAPKModal(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const modal = document.getElementById('apk-request-modal');
+    if (modal) modal.classList.remove('hidden');
+  }
+  function closeAPKModal() {
+    const modal = document.getElementById('apk-request-modal');
+    if (modal) modal.classList.add('hidden');
+  }
+  function copyAPKEmail(btn) {
+    navigator.clipboard.writeText('aliahmed.work0@gmail.com').then(() => {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '✅ Copied!';
+      btn.style.background = '#4CAF50';
+      btn.style.color = '#FFFFFF';
+      setTimeout(() => {
+        btn.innerHTML = orig;
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 2000);
+    });
+  }
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAPKModal();
+  });
+  </script>
 </body>
 </html>

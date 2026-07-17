@@ -61,3 +61,6 @@ android/app/google-services.json
 # macOS files
 .DS_Store
 
+# Firebase CLI cache
+.firebase/
+

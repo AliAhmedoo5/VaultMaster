@@ -68,7 +68,7 @@ class DocumentRepository {
       DocumentModel(
         id: 'demo-doc-2',
         userId: 'demo-sandbox-uid',
-        name: 'Passport_Biometric_Scan.png',
+        name: 'Passport_ID_Card_Scan.png',
         localPath: 'web_cache/demo-doc-2',
         createdAt: now.subtract(const Duration(days: 1)),
         categoryId: 'IDs',

@@ -4,20 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>VaultMaster — Secure Offline-First Document Scanner & Security Vault</title>
-  <meta name="description" content="Scan, organize, and protect your confidential physical and digital documents with military-grade offline encryption (`AES-GCM` & `SQLCipher`) and real-time ML Kit camera edge detection. Works completely offline.">
-  <meta name="keywords" content="document scanner, offline vault, secure PDF scanner, flutter scanner, AES-GCM encryption, biometric document lock, ML Kit scanner">
-  <link rel="canonical" href="https://vaultmaster-pds.web.app/">
+  <meta name="description" content="Scan, organize, and protect your confidential physical and digital documents with military-grade offline encryption (`AES-GCM` & `SQLCipher`) and secure PIN passcode verification. Works completely offline.">
+  <meta name="keywords" content="document scanner, offline vault, secure PDF scanner, flutter scanner, AES-GCM encryption, PIN document lock, PDF compiler">
+  <link rel="canonical" href="https://vaultmasterapp.web.app/">
   <!-- Open Graph -->
   <meta property="og:title" content="VaultMaster — Secure Offline-First Document Scanner">
   <meta property="og:description" content="Scan, organize, and protect your confidential documents with military-grade security. Works completely offline without cloud storage caps.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://vaultmaster-pds.web.app/">
-  <meta property="og:image" content="https://vaultmaster-pds.web.app/assets/hero-mockup-light.jpg">
+  <meta property="og:url" content="https://vaultmasterapp.web.app/">
+  <meta property="og:image" content="https://vaultmasterapp.web.app/assets/hero-mockup-light.jpg">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="VaultMaster — Secure Offline-First Document Scanner">
-  <meta name="twitter:description" content="Military-grade offline document scanner & biometric security vault.">
-  <meta name="twitter:image" content="https://vaultmaster-pds.web.app/assets/hero-mockup-light.jpg">
+  <meta name="twitter:description" content="Military-grade offline document scanner & secure PIN vault.">
+  <meta name="twitter:image" content="https://vaultmasterapp.web.app/assets/hero-mockup-light.jpg">
   <!-- Icons -->
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/icon.png">
@@ -46,15 +46,14 @@
 
   <!-- Navbar -->
   <nav class="navbar">
-    <a href="index.html" class="brand-text"><span class="brand-icon">🛡️</span>Vault<span>Master</span></a>
+    <a href="index.html" class="brand-text"><img src="assets/nav-icon.png" alt="VaultMaster" class="brand-icon">Vault<span>Master</span></a>
     <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
     <ul class="nav-links">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="features.html">Features</a></li>
       <li><a href="comparison.html">Compare</a></li>
       <li><a href="demo.html">Demo</a></li>
-      <li><a href="docs.html">Docs</a></li>
-      <li><a href="download.html" class="btn btn-primary">Download</a></li>
+      <li><a href="mailto:aliahmed.work0@gmail.com?subject=VaultMaster%20APK%20Request" onclick="openAPKModal(event)" class="btn btn-primary" title="Contact via Email or LinkedIn to request the APK">Download APK</a></li>
     </ul>
   </nav>
 
@@ -62,14 +61,24 @@
   <main>
     <section class="hero">
       <div class="container animate-in">
-        <span class="badge">🛡️ Google ML Kit Scanner • Biometric Vault • Offline-First</span>
+        <span class="badge">🛡️ High-Resolution Scanner • Passcode PIN Vault • Offline-First</span>
         <h1 style="margin-top: 1rem;">Your Documents. Your Vault.</h1>
         <p class="lead">Scan, organize, and protect your important documents with military-grade security. Works completely offline. Syncs when you're ready.</p>
         <div class="hero-cta">
-          <a href="https://github.com/AliAhmedoo5/VaultMaster/releases/latest" class="btn btn-primary">Download APK</a>
-          <a href="features.html" class="btn btn-outline">See Features</a>
+          <a href="https://www.linkedin.com/in/aliahmed0516" target="_blank" rel="noopener" class="btn btn-primary">💼 Request APK via LinkedIn</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aliahmed.work0@gmail.com&su=VaultMaster%20APK%20Request&body=Hi%20Ali%2C%20I%20would%20like%20to%20request%20the%20VaultMaster%20APK." target="_blank" rel="noopener" class="btn btn-outline">✉️ Request APK via Email</a>
         </div>
-        <div class="hero-image">
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 1rem; text-align: center;">To download or install the verified Android APK, please click above or send a direct message on <a href="https://www.linkedin.com/in/aliahmed0516" target="_blank" rel="noopener" style="color: var(--accent-navy); font-weight: 600;">LinkedIn</a> or email <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aliahmed.work0@gmail.com&su=VaultMaster%20APK%20Request&body=Hi%20Ali%2C%20I%20would%20like%20to%20request%20the%20VaultMaster%20APK." target="_blank" rel="noopener" style="color: var(--accent-navy); font-weight: 600;">aliahmed.work0@gmail.com</a>.</p>
+        
+        <div style="max-width: 780px; margin: 1.75rem auto 0; padding: 1.25rem 1.5rem; background: rgba(26, 35, 126, 0.05); border: 1px solid rgba(26, 35, 126, 0.18); border-radius: 16px; text-align: left; display: flex; align-items: flex-start; gap: 1rem; box-shadow: 0 8px 24px rgba(0,0,0,0.03);">
+          <span style="font-size: 1.5rem; line-height: 1;">🛡️</span>
+          <div>
+            <h4 style="margin: 0 0 0.25rem; font-size: 0.95rem; font-weight: 700; color: var(--accent-navy);">Your Private Documents Stay Safe & Encrypted</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">VaultMaster protects your sensitive documents and secrets using your device's native OS Keystore encryption. Enjoy fast offline document scanning, PIN passcode verification, and optional secure cloud sync—with zero ads, zero telemetry, and zero subscription traps.</p>
+          </div>
+        </div>
+
+        <div class="hero-image" style="margin-top: 2rem;">
           <img src="assets/hero-mockup-light.jpg" alt="VaultMaster Dashboard Mockup">
         </div>
       </div>
@@ -85,13 +94,13 @@
         <div class="grid-3">
           <div class="card animate-in animate-delay-1">
             <span class="card-icon icon-scan">📸</span>
-            <h3>Smart Scanner</h3>
-            <p>Real-time edge detection, perspective correction, and multi-page PDF compilation powered by Google ML Kit.</p>
+            <h3>Document Scanner</h3>
+            <p>High-clarity physical document capture and instant multi-page PDF compilation right on your device.</p>
           </div>
           <div class="card animate-in animate-delay-2">
             <span class="card-icon icon-vault">🔒</span>
             <h3>Security Vault</h3>
-            <p>PIN-protected and biometric encrypted storage using OS keychain that auto-locks the moment you background the app.</p>
+            <p>PIN-protected encrypted storage using hardware keystore encryption that auto-locks the moment you background the app.</p>
           </div>
           <div class="card animate-in animate-delay-3">
             <span class="card-icon icon-cloud">⚡</span>
@@ -105,13 +114,78 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <p class="footer-text">&copy; 2026 VaultMaster. All rights reserved.</p>
+    <p class="footer-text">&copy; 2026 VaultMaster. All rights reserved. • Direct Support: <a href="mailto:aliahmed.work0@gmail.com" style="color: inherit; text-decoration: underline;">aliahmed.work0@gmail.com</a></p>
     <div class="footer-links">
-      <a href="https://github.com/AliAhmedoo5/VaultMaster" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://github.com/AliAhmedoo5/VaultMaster/issues" target="_blank" rel="noopener">Issues</a>
-      <a href="https://github.com/AliAhmedoo5/VaultMaster/releases" target="_blank" rel="noopener">Releases</a>
+      <a href="https://github.com/AliAhmedoo5" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/aliahmed0516" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:aliahmed.work0@gmail.com">Email Me</a>
     </div>
   </footer>
 
+  <!-- Universal APK & Contact Request Modal -->
+  <div id="apk-request-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <button onclick="closeAPKModal()" style="position: absolute; top: 1.25rem; right: 1.25rem; background: transparent; border: none; font-size: 1.6rem; cursor: pointer; color: var(--text-secondary);">×</button>
+      
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem;">
+        <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(255, 193, 7, 0.18); display: flex; align-items: center; justify-content: center; font-size: 1.6rem;">🛡️</div>
+        <div>
+          <h3 style="margin: 0; font-size: 1.35rem; font-weight: 800; color: var(--text-primary);">Get VaultMaster APK</h3>
+          <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary);">Direct verification & custom device builds</p>
+        </div>
+      </div>
+
+      <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">To ensure you receive the genuine, cryptographically signed APK tailored for your exact device architecture (arm64-v8a / x86_64), please request it directly from the lead architect via <strong>LinkedIn</strong> or <strong>Email</strong>:</p>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;">
+        <a href="https://www.linkedin.com/in/aliahmed0516" target="_blank" rel="noopener" class="btn btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px; border-radius: 14px; font-weight: 700; font-size: 1.05rem;">
+          <span>💼</span> Message on LinkedIn (@aliahmed0516)
+        </a>
+
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 14px; padding: 1.2rem;">
+          <div style="font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">✉️ Direct Email Request</div>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+            <span style="font-family: monospace; font-size: 0.95rem; font-weight: 700; color: var(--text-primary);">aliahmed.work0@gmail.com</span>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button onclick="copyAPKEmail(this)" class="btn btn-outline" style="padding: 8px 14px; font-size: 0.82rem; border-radius: 8px; cursor: pointer;">📋 Copy</button>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aliahmed.work0@gmail.com&su=VaultMaster%20APK%20Request&body=Hi%20Ali%2C%20I%20would%20like%20to%20request%20the%20VaultMaster%20APK." target="_blank" rel="noopener" class="btn btn-outline" style="padding: 8px 14px; font-size: 0.82rem; border-radius: 8px;">↗ Gmail Web</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center;">
+        <button onclick="closeAPKModal()" class="btn btn-outline" style="width: 100%; border: none; color: var(--text-secondary); cursor: pointer;">Maybe Later</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  function openAPKModal(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const modal = document.getElementById('apk-request-modal');
+    if (modal) modal.classList.remove('hidden');
+  }
+  function closeAPKModal() {
+    const modal = document.getElementById('apk-request-modal');
+    if (modal) modal.classList.add('hidden');
+  }
+  function copyAPKEmail(btn) {
+    navigator.clipboard.writeText('aliahmed.work0@gmail.com').then(() => {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '✅ Copied!';
+      btn.style.background = '#4CAF50';
+      btn.style.color = '#FFFFFF';
+      setTimeout(() => {
+        btn.innerHTML = orig;
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 2000);
+    });
+  }
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAPKModal();
+  });
+  </script>
 </body>
 </html>

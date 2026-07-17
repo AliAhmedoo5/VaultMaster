@@ -97,7 +97,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
               ),
               const SizedBox(height: AppConstants.md),
               Text(
-                'Smart scanning, biometric protection, and offline-first encryption. Your confidential documents, exactly where they belong.',
+                'Clean document scanning, PIN passcode protection, and offline-first encryption. Your confidential documents, exactly where they belong.',
                 textAlign: TextAlign.center,
                 style: textTheme.bodyLarge?.copyWith(
                   color: AppTheme.onSurfaceVariant,

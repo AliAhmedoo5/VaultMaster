@@ -119,7 +119,8 @@ jobs:
             npx -y firebase-tools@latest deploy --only hosting --project vaultmaster-pds --debug
             rm -f service-account.json
           elif [ -n "$FIREBASE_TOKEN" ]; then
-            npx -y firebase-tools@latest deploy --only hosting --project vaultmaster-pds --token "$FIREBASE_TOKEN" --debug
+            CLEAN_TOKEN=$(echo -n "$FIREBASE_TOKEN" | tr -d '\r\n ')
+            npx -y firebase-tools@latest deploy --only hosting --project vaultmaster-pds --token "$CLEAN_TOKEN" --debug
           else
             echo "No deployment secrets provided. Skipping."
           fi

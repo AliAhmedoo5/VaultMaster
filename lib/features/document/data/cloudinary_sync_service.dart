@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -46,11 +47,11 @@ class CloudinarySyncService extends _$CloudinarySyncService with WidgetsBindingO
 
   Future<void> triggerSync() async {
     if (_isSyncing || !_isAppInForeground) return;
+    if (FirebaseAuth.instance.currentUser == null) return;
     _isSyncing = true;
     
     try {
       final repo = ref.read(documentRepositoryProvider);
-      if (repo.currentUser == null) return;
       var unsyncedDocs = await repo.getUnsyncedDocuments();
 
       while (unsyncedDocs.isNotEmpty && _isAppInForeground) {

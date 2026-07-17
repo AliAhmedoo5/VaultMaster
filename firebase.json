@@ -18,6 +18,7 @@
     }
   },
   "hosting": {
+    "site": "vaultmaster-pds",
     "public": "website",
     "ignore": [
       "firebase.json",

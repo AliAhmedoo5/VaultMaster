@@ -55,6 +55,20 @@
             <!-- Flutter Web App Iframe -->
             <iframe src="app/index.html" id="flutter-iframe" title="VaultMaster Flutter Web App" class="app-iframe" style="display: none;" allow="camera; clipboard-read; clipboard-write; fullscreen"></iframe>
 
+            <!-- Flutter Fallback Card (When CI build is not yet deployed) -->
+            <div id="flutter-fallback" style="display: none; padding: 48px 20px 20px; height: 100%; overflow-y: auto; background: var(--bg-primary); text-align: center;">
+              <div style="margin-top: 2rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
+                <h3 style="margin-bottom: 0.5rem; color: var(--text-main);">Flutter Web Canvas</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 1.5rem; max-width: 260px; margin-left: auto; margin-right: auto;">
+                  The full WebAssembly app bundle is compiled and published via GitHub Actions cloud CI/CD. To test our offline-first document organizer immediately, switch to the <b>Interactive Sandbox</b> below!
+                </p>
+                <button class="btn btn-gold" onclick="switchDemoMode('sandbox')" style="padding: 10px 20px; font-size: 0.85rem; width: auto; margin: 0 auto;">
+                  🎨 Launch Interactive Sandbox →
+                </button>
+              </div>
+            </div>
+
             <!-- Sandbox Simulation (Default active view) -->
             <div id="sandbox-view" style="padding: 48px 20px 20px; height: 100%; overflow-y: auto; background: var(--bg-primary);">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
@@ -152,21 +166,36 @@
   </footer>
 
   <script>
-    function switchDemoMode(mode) {
+    async function switchDemoMode(mode) {
       const flutterTab = document.getElementById('tab-flutter');
       const sandboxTab = document.getElementById('tab-sandbox');
       const flutterIframe = document.getElementById('flutter-iframe');
       const sandboxView = document.getElementById('sandbox-view');
+      const flutterFallback = document.getElementById('flutter-fallback');
 
       if (mode === 'flutter') {
         flutterTab.classList.add('active');
         sandboxTab.classList.remove('active');
-        flutterIframe.style.display = 'block';
         sandboxView.style.display = 'none';
+
+        try {
+          const resp = await fetch('app/index.html', { method: 'HEAD' });
+          if (resp.ok) {
+            flutterIframe.style.display = 'block';
+            if (flutterFallback) flutterFallback.style.display = 'none';
+          } else {
+            flutterIframe.style.display = 'none';
+            if (flutterFallback) flutterFallback.style.display = 'block';
+          }
+        } catch (e) {
+          flutterIframe.style.display = 'none';
+          if (flutterFallback) flutterFallback.style.display = 'block';
+        }
       } else {
         sandboxTab.classList.add('active');
         flutterTab.classList.remove('active');
         flutterIframe.style.display = 'none';
+        if (flutterFallback) flutterFallback.style.display = 'none';
         sandboxView.style.display = 'block';
       }
     }

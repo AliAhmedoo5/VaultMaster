@@ -116,10 +116,10 @@ jobs:
           if [ -n "$FIREBASE_SA" ]; then
             echo "$FIREBASE_SA" > service-account.json
             export GOOGLE_APPLICATION_CREDENTIALS=service-account.json
-            npx -y firebase-tools@latest deploy --only hosting --project vaultmaster-pds
+            npx -y firebase-tools@latest deploy --only hosting --project vaultmaster-pds --debug
             rm -f service-account.json
           elif [ -n "$FIREBASE_TOKEN" ]; then
-            npx -y firebase-tools@latest deploy --only hosting --project vaultmaster-pds --token "$FIREBASE_TOKEN"
+            npx -y firebase-tools@latest deploy --only hosting --project vaultmaster-pds --token "$FIREBASE_TOKEN" --debug
           else
             echo "No deployment secrets provided. Skipping."
           fi

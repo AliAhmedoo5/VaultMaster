@@ -1,20 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Docs — VaultMaster Getting Started Guide</title>
-    <meta name="description" content="Get up and running with VaultMaster in under a minute. Installation guide, document scanning instructions, file import tips, and security vault setup.">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Docs — VaultMaster Getting Started Guide">
-    <meta property="og:description" content="Get up and running with VaultMaster in under a minute. Learn how to install, scan documents, and secure assets offline.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/hero-mockup-light.jpg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Docs — VaultMaster Getting Started Guide & API Reference</title>
+  <meta name="description" content="Get up and running with VaultMaster in under a minute. Installation instructions, ML Kit document scanning tips, file import workflows, and SQLCipher setup.">
+  <meta name="keywords" content="VaultMaster documentation, offline scanner guide, SQLCipher setup, ML Kit scanner manual, secure storage tutorial">
+  <link rel="canonical" href="https://vaultmaster-pds.web.app/docs.html">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Docs — VaultMaster Getting Started Guide & API Reference">
+  <meta property="og:description" content="Get up and running with VaultMaster in under a minute. Installation instructions, ML Kit document scanning tips, and SQLCipher setup.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vaultmaster-pds.web.app/docs.html">
+  <meta property="og:image" content="https://vaultmaster-pds.web.app/assets/hero-mockup-light.jpg">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Docs — VaultMaster Getting Started Guide & API Reference">
+  <meta name="twitter:description" content="Military-grade offline document scanner documentation & developer guide.">
+  <meta name="twitter:image" content="https://vaultmaster-pds.web.app/assets/hero-mockup-light.jpg">
+  <!-- Icons -->
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/icon.png">
+  <link rel="stylesheet" href="style.css">
+  <!-- Firebase Web SDK & Analytics -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 
-    <!-- CSS -->
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link rel="stylesheet" href="style.css">
+    const firebaseConfig = {
+      apiKey: "AIzaSyAlSMdOVMGFn57kHjuoZu-rLNRQ3N9ICKE",
+      authDomain: "vaultmaster-pds.firebaseapp.com",
+      projectId: "vaultmaster-pds",
+      storageBucket: "vaultmaster-pds.firebasestorage.app",
+      messagingSenderId: "732331755327",
+      appId: "1:732331755327:web:071e4f44571ad4fb5b758a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    logEvent(analytics, 'page_view', { page_title: document.title, page_location: window.location.href });
+    window.vaultAnalytics = analytics;
+  </script>
 </head>
 <body>
 

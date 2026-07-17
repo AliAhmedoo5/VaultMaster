@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vaultmaster-pds.web.app/sitemap.xml

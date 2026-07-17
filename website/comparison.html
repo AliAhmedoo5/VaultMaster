@@ -1,17 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compare — VaultMaster vs Alternatives</title>
-    <meta name="description" content="See how VaultMaster compares to Google Drive, CamScanner, and other document management tools. Free, offline-first, and open source.">
-    <!-- Open Graph -->
-    <meta property="og:title" content="Compare — VaultMaster vs Alternatives">
-    <meta property="og:description" content="See how VaultMaster compares to Google Drive, CamScanner, and other document management tools.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vaultmaster.app/comparison.html">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Compare — VaultMaster vs Google Drive & CamScanner</title>
+  <meta name="description" content="See how VaultMaster compares to Google Drive, CamScanner, and other document management tools. 100% free, offline-first, open source, with zero cloud storage caps.">
+  <meta name="keywords" content="VaultMaster vs CamScanner, VaultMaster vs Google Drive, offline document management comparison, free document scanner">
+  <link rel="canonical" href="https://vaultmaster-pds.web.app/comparison.html">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Compare — VaultMaster vs Google Drive & CamScanner">
+  <meta property="og:description" content="See how VaultMaster compares to Google Drive, CamScanner, and other document management tools. 100% free, offline-first, and open source.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vaultmaster-pds.web.app/comparison.html">
+  <meta property="og:image" content="https://vaultmaster-pds.web.app/assets/hero-mockup-light.jpg">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Compare — VaultMaster vs Google Drive & CamScanner">
+  <meta name="twitter:description" content="Military-grade offline document scanner vs standard cloud apps.">
+  <meta name="twitter:image" content="https://vaultmaster-pds.web.app/assets/hero-mockup-light.jpg">
+  <!-- Icons -->
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/icon.png">
+  <link rel="stylesheet" href="style.css">
+  <!-- Firebase Web SDK & Analytics -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAlSMdOVMGFn57kHjuoZu-rLNRQ3N9ICKE",
+      authDomain: "vaultmaster-pds.firebaseapp.com",
+      projectId: "vaultmaster-pds",
+      storageBucket: "vaultmaster-pds.firebasestorage.app",
+      messagingSenderId: "732331755327",
+      appId: "1:732331755327:web:071e4f44571ad4fb5b758a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    logEvent(analytics, 'page_view', { page_title: document.title, page_location: window.location.href });
+    window.vaultAnalytics = analytics;
+  </script>
 </head>
 <body>
 

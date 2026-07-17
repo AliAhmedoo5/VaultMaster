@@ -90,6 +90,8 @@ jobs:
 
       - name: Build Flutter Web Bundle
         run: |
+          echo "Configuring Flutter Web platform files inside GitHub Cloud Runner..."
+          flutter create . --platforms web
           echo "Building Flutter Web for embedded product demo..."
           flutter build web --release --base-href "/app/"
 

@@ -612,12 +612,12 @@
       document.getElementById('pin-error').innerText = '';
       
       const pinModal = document.getElementById('flutter-pin-modal');
-      pinModal.classList.add('active');
+      pinModal.classList.add('show');
     }
 
     function closePinModal() {
       const pinModal = document.getElementById('flutter-pin-modal');
-      pinModal.classList.remove('active');
+      pinModal.classList.remove('show');
       currentPinInput = '';
     }
 
@@ -692,7 +692,7 @@
 
     // --- OVERLAYS & DIALOGS CONTROLLERS ---
     function closeOverlay() {
-      document.getElementById('flutter-overlay').classList.remove('active');
+      document.getElementById('flutter-overlay').classList.remove('show');
       document.getElementById('flutter-ingestion-sheet').style.display = 'none';
       document.getElementById('flutter-ingestion-dialog').style.display = 'none';
       document.getElementById('flutter-add-cat-dialog').style.display = 'none';
@@ -702,7 +702,7 @@
     function openDocViewerModal(title, content) {
       document.getElementById('doc-viewer-title').innerText = title;
       document.getElementById('doc-viewer-content').innerText = content;
-      document.getElementById('flutter-overlay').classList.add('active');
+      document.getElementById('flutter-overlay').classList.add('show');
       document.getElementById('flutter-doc-viewer-modal').style.display = 'block';
     }
 
@@ -711,7 +711,7 @@
     let lastIngestedWasScan = false;
 
     function simulateScan() {
-      document.getElementById('flutter-overlay').classList.add('active');
+      document.getElementById('flutter-overlay').classList.add('show');
       document.getElementById('flutter-ingestion-sheet').style.display = 'block';
     }
 
@@ -720,21 +720,21 @@
       document.getElementById('flutter-ingestion-sheet').style.display = 'none';
       
       if (isScan) {
-        document.getElementById('flutter-overlay').classList.remove('active');
-        document.getElementById('flutter-camera-modal').classList.add('active');
+        document.getElementById('flutter-overlay').classList.remove('show');
+        document.getElementById('flutter-camera-modal').classList.add('show');
       } else {
         document.getElementById('flutter-ingestion-dialog').style.display = 'block';
       }
     }
 
     function closeCameraModal() {
-      document.getElementById('flutter-camera-modal').classList.remove('active');
+      document.getElementById('flutter-camera-modal').classList.remove('show');
     }
 
     function triggerCameraCapture() {
       closeCameraModal();
       setTimeout(() => {
-        document.getElementById('flutter-overlay').classList.add('active');
+        document.getElementById('flutter-overlay').classList.add('show');
         document.getElementById('flutter-ingestion-dialog').style.display = 'block';
       }, 150);
     }
@@ -802,7 +802,7 @@
     }
 
     function showAddCategory() {
-      document.getElementById('flutter-overlay').classList.add('active');
+      document.getElementById('flutter-overlay').classList.add('show');
       document.getElementById('flutter-add-cat-dialog').style.display = 'block';
       setTimeout(() => {
         const inp = document.getElementById('new-cat-input');

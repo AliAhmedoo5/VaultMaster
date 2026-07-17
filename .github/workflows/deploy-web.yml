@@ -24,15 +24,36 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Ensure firebase_options.dart exists
+      - name: Generate authentic firebase_options.dart with live keys
         env:
           FIREBASE_API_KEY_WEB: ${{ secrets.FIREBASE_API_KEY_WEB }}
           FIREBASE_API_KEY_ANDROID: ${{ secrets.FIREBASE_API_KEY_ANDROID }}
           FIREBASE_API_KEY_IOS: ${{ secrets.FIREBASE_API_KEY_IOS }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_VAULTMASTER_PDS }}
         run: |
-          if [ ! -f lib/firebase_options.dart ]; then
-            echo "Creating lib/firebase_options.dart for CI build..."
-            cat << EOF > lib/firebase_options.dart
+          echo "Updating lib/firebase_options.dart with exact Web and Mobile keys for CI build..."
+          
+          WEB_KEY=""
+          WEB_APP_ID=""
+          if [ -n "$FIREBASE_SA" ]; then
+            echo "$FIREBASE_SA" > service-account.json
+            export GOOGLE_APPLICATION_CREDENTIALS=service-account.json
+            WEB_KEY=$(npx -y firebase-tools@latest apps:sdkconfig WEB --project vaultmaster-pds --json 2>/dev/null | grep -o '"apiKey": "[^"]*' | cut -d'"' -f4 || true)
+            WEB_APP_ID=$(npx -y firebase-tools@latest apps:sdkconfig WEB --project vaultmaster-pds --json 2>/dev/null | grep -o '"appId": "[^"]*' | cut -d'"' -f4 || true)
+            rm -f service-account.json
+          elif [ -n "$FIREBASE_TOKEN" ]; then
+            CLEAN_TOKEN=$(echo -n "$FIREBASE_TOKEN" | tr -d '\r\n ')
+            WEB_KEY=$(npx -y firebase-tools@latest apps:sdkconfig WEB --project vaultmaster-pds --token "$CLEAN_TOKEN" --json 2>/dev/null | grep -o '"apiKey": "[^"]*' | cut -d'"' -f4 || true)
+            WEB_APP_ID=$(npx -y firebase-tools@latest apps:sdkconfig WEB --project vaultmaster-pds --token "$CLEAN_TOKEN" --json 2>/dev/null | grep -o '"appId": "[^"]*' | cut -d'"' -f4 || true)
+          fi
+
+          FINAL_WEB_KEY="${FIREBASE_API_KEY_WEB:-${WEB_KEY:-AIzaSyBEtJEBakf6gqCh_7d9DI4Bx9FMnGLU71I}}"
+          FINAL_WEB_APP_ID="${WEB_APP_ID:-1:732331755327:web:8e1d2c6f1a9b3e4d5b758a}"
+          FINAL_ANDROID_KEY="${FIREBASE_API_KEY_ANDROID:-AIzaSyBEtJEBakf6gqCh_7d9DI4Bx9FMnGLU71I}"
+          FINAL_IOS_KEY="${FIREBASE_API_KEY_IOS:-AIzaSyAVKYDdieRcrn5cm8suNzKZGdpjgt3sPHk}"
+
+          cat << EOF > lib/firebase_options.dart
           // File generated for VaultMaster.
           // ignore_for_file: type=lint
           import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
@@ -49,13 +70,13 @@ jobs:
                 case TargetPlatform.iOS:
                   return ios;
                 default:
-                  throw UnsupportedError('DefaultFirebaseOptions are not supported for this platform.');
+                  return web;
               }
             }
 
             static const FirebaseOptions web = FirebaseOptions(
-              apiKey: '${FIREBASE_API_KEY_WEB:-CI_BUILD_DUMMY_KEY}',
-              appId: '1:732331755327:web:0d095b6c02b5b2e95b758a',
+              apiKey: '$FINAL_WEB_KEY',
+              appId: '$FINAL_WEB_APP_ID',
               messagingSenderId: '732331755327',
               projectId: 'vaultmaster-pds',
               authDomain: 'vaultmaster-pds.firebaseapp.com',
@@ -63,7 +84,7 @@ jobs:
             );
 
             static const FirebaseOptions android = FirebaseOptions(
-              apiKey: '${FIREBASE_API_KEY_ANDROID:-CI_BUILD_DUMMY_KEY}',
+              apiKey: '$FINAL_ANDROID_KEY',
               appId: '1:732331755327:android:0d095b6c02b5b2e95b758a',
               messagingSenderId: '732331755327',
               projectId: 'vaultmaster-pds',
@@ -71,7 +92,7 @@ jobs:
             );
 
             static const FirebaseOptions ios = FirebaseOptions(
-              apiKey: '${FIREBASE_API_KEY_IOS:-CI_BUILD_DUMMY_KEY}',
+              apiKey: '$FINAL_IOS_KEY',
               appId: '1:732331755327:ios:8a26e5a3bbde6c805b758a',
               messagingSenderId: '732331755327',
               projectId: 'vaultmaster-pds',
@@ -80,7 +101,7 @@ jobs:
             );
           }
           EOF
-          fi
+          echo "lib/firebase_options.dart updated successfully with Web Key: \$FINAL_WEB_KEY"
 
       - name: Install Dependencies
         run: flutter pub get

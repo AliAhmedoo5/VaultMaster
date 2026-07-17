@@ -38,33 +38,49 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Ensure firebase_options.dart exists
+      - name: Generate authentic firebase_options.dart with live keys
         env:
+          FIREBASE_API_KEY_WEB: ${{ secrets.FIREBASE_API_KEY_WEB }}
           FIREBASE_API_KEY_ANDROID: ${{ secrets.FIREBASE_API_KEY_ANDROID }}
           FIREBASE_API_KEY_IOS: ${{ secrets.FIREBASE_API_KEY_IOS }}
         run: |
-          if [ ! -f lib/firebase_options.dart ]; then
-            echo "Creating lib/firebase_options.dart for CI build..."
-            cat << EOF > lib/firebase_options.dart
+          echo "Updating lib/firebase_options.dart with live API keys for APK build..."
+          FINAL_WEB_KEY="${FIREBASE_API_KEY_WEB:-AIzaSyBEtJEBakf6gqCh_7d9DI4Bx9FMnGLU71I}"
+          FINAL_ANDROID_KEY="${FIREBASE_API_KEY_ANDROID:-AIzaSyBEtJEBakf6gqCh_7d9DI4Bx9FMnGLU71I}"
+          FINAL_IOS_KEY="${FIREBASE_API_KEY_IOS:-AIzaSyAVKYDdieRcrn5cm8suNzKZGdpjgt3sPHk}"
+
+          cat << EOF > lib/firebase_options.dart
           // File generated for VaultMaster.
           // ignore_for_file: type=lint
           import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
-          import 'package:flutter/foundation.dart' show defaultTargetPlatform, TargetPlatform;
+          import 'package:flutter/foundation.dart' show defaultTargetPlatform, TargetPlatform, kIsWeb;
 
           class DefaultFirebaseOptions {
             static FirebaseOptions get currentPlatform {
+              if (kIsWeb) {
+                return web;
+              }
               switch (defaultTargetPlatform) {
                 case TargetPlatform.android:
                   return android;
                 case TargetPlatform.iOS:
                   return ios;
                 default:
-                  throw UnsupportedError('DefaultFirebaseOptions are not supported for this platform.');
+                  return web;
               }
             }
 
+            static const FirebaseOptions web = FirebaseOptions(
+              apiKey: '$FINAL_WEB_KEY',
+              appId: '1:732331755327:web:8e1d2c6f1a9b3e4d5b758a',
+              messagingSenderId: '732331755327',
+              projectId: 'vaultmaster-pds',
+              authDomain: 'vaultmaster-pds.firebaseapp.com',
+              storageBucket: 'vaultmaster-pds.firebasestorage.app',
+            );
+
             static const FirebaseOptions android = FirebaseOptions(
-              apiKey: '${FIREBASE_API_KEY_ANDROID:-CI_BUILD_DUMMY_KEY}',
+              apiKey: '$FINAL_ANDROID_KEY',
               appId: '1:732331755327:android:0d095b6c02b5b2e95b758a',
               messagingSenderId: '732331755327',
               projectId: 'vaultmaster-pds',
@@ -72,7 +88,7 @@ jobs:
             );
 
             static const FirebaseOptions ios = FirebaseOptions(
-              apiKey: '${FIREBASE_API_KEY_IOS:-CI_BUILD_DUMMY_KEY}',
+              apiKey: '$FINAL_IOS_KEY',
               appId: '1:732331755327:ios:8a26e5a3bbde6c805b758a',
               messagingSenderId: '732331755327',
               projectId: 'vaultmaster-pds',
@@ -81,7 +97,7 @@ jobs:
             );
           }
           EOF
-          fi
+          echo "lib/firebase_options.dart updated successfully for APK build."
 
       - name: Install Dependencies
         run: flutter pub get
